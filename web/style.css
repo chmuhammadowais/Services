@@ -421,3 +421,62 @@ textarea{
     line-height: 26px;
     border: 2px solid lightgrey;
 }
+.desc_box{
+    background-color: lightgrey;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 1%;
+}
+.about_avatar{
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    background: url(./resources/company-info-icon.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.privacy_policy_avatar{
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    background: url(./resources/privacy-document-icon.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.other_contact{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 800px;
+    margin: 0 auto;
+}
+.cust_srvc{
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    background: url(./resources/customer-service-icon.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.cont{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    gap: 20px;
+    font-weight: bold;
+}
+.cont a{
+    border-radius: 5px;
+    display: inline-block;
+    width: 240px;
+    height: 30px;
+    background-color: lightgray;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+}
