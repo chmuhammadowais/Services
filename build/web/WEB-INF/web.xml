@@ -4,9 +4,17 @@
         <servlet-name>FormRedirector</servlet-name>
         <servlet-class>Servlets.FormRedirector</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignupRequestProcessor</servlet-name>
+        <servlet-class>Servlets.SignupRequestProcessor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FormRedirector</servlet-name>
         <url-pattern>/FormRedirector</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignupRequestProcessor</servlet-name>
+        <url-pattern>/SignupRequestProcessor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
