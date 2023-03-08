@@ -20,22 +20,25 @@
 	<link rel="icon" href="./resources/home.png">
 </head>
 <body>
-        <div class="menu_bar">
+       <div class="menu_bar">
         <div class="icon"></div>
 
         <div class="content_bar">
             <a href="/Services/Services.jsp">Services</a>
+    
+            
             <div class="dropdown_info">
                 <a href="">Service Options</a>
                 <div class="dropdown_content">
-                    <a href="#">Track Service</a>
-                    <a href="#">Service History</a>
+                    <a href="/Services/TrackService.jsp">Track Service</a>
+                    <a href="/Services/ServiceHistory.jsp">Service History</a>
                 </div>
             </div>
 
             <div class="dropdown_info">
                 <a href="">Other</a>
                 <div class="dropdown_content">
+                <a href="/Services/CustomerService.jsp">Customer Service</a>
                     <a href="/Services/PrivacyPolicy.jsp" target="_self">Privacy Policy</a>
                     <a href="/Services/About.jsp">About</a>
                 </div>
@@ -45,7 +48,7 @@
                <a href="" class="account"></a>
                 <div class="dropdown_content">
                     <a href="/Services/SigninSignup.jsp" target="_self">Sign-in / Sign-up</a>
-                    <a href="#">Account Management</a>
+                    <a href="/Services/AccountInfo.jsp">Account Information</a>
                 </div>
             </div>
            

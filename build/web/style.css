@@ -518,3 +518,129 @@ th{
 tr:nth-child(even){
     background-color: lightgray;
 }
+
+@media only screen and (max-width:768px){
+    .menu_bar{
+        margin: 0 auto;
+        display: flex;
+        justify-content:space-between;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        }
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 95%;
+        gap: 10px;
+    }
+    .right{
+        display: inline-block;
+        text-align:center;
+    }
+    .btn{
+        display: inline-block;
+    }
+    p{
+        color: black;
+        font-size: 14px;
+    }
+    .menu{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 5px;
+    }
+    .heading{
+        font-size: 24px;
+    }
+    .subheading{
+        font-size: 18px;
+    }
+    .services{
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        column-gap: 10px;
+        row-gap: 30px;
+        width: 320px;
+        margin: 0 auto;
+    }
+    .item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: lightgray;
+        width: 100px;
+        height: 110px;
+        border-radius: 10px;
+        flex-direction: column;
+    }
+    .item a {
+        display: inline-block;
+        text-decoration: none;
+        color: black;
+        text-align: center;
+        line-height: 210px;
+    }
+    .item p{
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .form_container{
+        margin: 0 auto;
+        width: 450px;
+        display: flex;
+        flex-direction: column;
+    }
+    .innerformcontainer{
+        width: 450px;
+        display: grid;
+        grid-template-columns: 450px;
+        column-gap: 30px;
+        row-gap: 30px;
+    }
+    .formitem{
+        display: flex;
+        width: 450px;
+        justify-content: space-between;
+    }
+    .formtextarea{
+        width: 450px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+    textarea{
+        resize: none;
+        width: 300px;
+        height: 100px;
+        color: black;
+        font-size: 18px;
+        font-family: Open Sans;
+        border-radius: 5px;
+        border-width: 1px;
+        font-size: 14px;
+    }
+    .other_contact{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        gap: 10px;
+    }
+    table{
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+    tr{
+        height: 30px;
+    }
+
+}
