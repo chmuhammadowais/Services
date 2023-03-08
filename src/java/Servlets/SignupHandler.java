@@ -4,7 +4,7 @@
  */
 package Servlets;
 
-import Users.Client;
+import Management.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ import java.io.PrintWriter;
  *
  * @author Muhammad
  */
-public class ClientManagement extends HttpServlet {
+public class SignupHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +36,10 @@ public class ClientManagement extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ClientManagement</title>");            
+            out.println("<title>Servlet SignupHandler</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ClientManagement at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SignupHandler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -71,7 +71,7 @@ public class ClientManagement extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        	String name = request.getParameter("name");
+       String name = request.getParameter("name");
 		int age = Integer.parseInt(request.getParameter("age"));
 		String gender = request.getParameter("gender");
 		int contact = Integer.parseInt(request.getParameter("contact"));
@@ -85,7 +85,6 @@ public class ClientManagement extends HttpServlet {
                 Client c = new Client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
                 c.add_client(c);
 		doGet(request, response);
-	
     }
 
     /**

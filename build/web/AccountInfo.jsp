@@ -28,7 +28,7 @@
 
     <div class="accountavatar"></div>
 
-    <form action="ClientManagement"  method="post" class="form_container">
+    <form action="SignupHandler"  method="post" class="form_container">
         <div class="innerformcontainer">
             <div class="formitem">
                 <label for="name">Full Name</label>

@@ -9,8 +9,12 @@
         <servlet-class>Servlets.SignupRequestHandler</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ClientManagement</servlet-name>
-        <servlet-class>Servlets.ClientManagement</servlet-class>
+        <servlet-name>ServiceFormHandler</servlet-name>
+        <servlet-class>Servlets.ServiceFormHandler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignupHandler</servlet-name>
+        <servlet-class>Servlets.SignupHandler</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FormRedirector</servlet-name>
@@ -21,8 +25,12 @@
         <url-pattern>/SignupRequestHandler</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ClientManagement</servlet-name>
-        <url-pattern>/ClientManagement</url-pattern>
+        <servlet-name>ServiceFormHandler</servlet-name>
+        <url-pattern>/ServiceFormHandler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignupHandler</servlet-name>
+        <url-pattern>/SignupHandler</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
