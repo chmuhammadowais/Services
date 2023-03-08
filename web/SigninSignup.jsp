@@ -33,7 +33,7 @@
         <button type="submit" class="submit_btn">Submit</button>
     </form>
 
-    <form class="otherlogin" method="post" action="SignupRequestProcessor">
+    <form class="otherlogin" method="post" action="SignupRequestHandler">
        <button type="submit" value="Email" name="btn" class="email">Sign up with Email</button>
        
        <button type="submit" value="Google" name="btn" class="google">Sign up with Google</button>

@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package Servlets;
+
+import Users.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +17,7 @@ import java.io.PrintWriter;
  *
  * @author Muhammad
  */
-public class SignupRequestProcessor extends HttpServlet {
+public class ClientManagement extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +36,10 @@ public class SignupRequestProcessor extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SignupRequestProcessor</title>");            
+            out.println("<title>Servlet ClientManagement</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SignupRequestProcessor at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ClientManagement at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -69,20 +71,21 @@ public class SignupRequestProcessor extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String type = request.getParameter("btn");
-		System.out.println(type);
-		if(type.equals("Email")) {
-			request.setAttribute("val", type);
-			request.getRequestDispatcher("AccountInfo.jsp").forward(request, response);
-		}
-		else if("".equals(type)) {
-			
-		}
-		else if("".equals(type)) {
-			
-		}
-		//doGet(request, response);
-         processRequest(request, response);
+        	String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String gender = request.getParameter("gender");
+		int contact = Integer.parseInt(request.getParameter("contact"));
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String address = request.getParameter("address");
+		String contact_hrs_from = request.getParameter("time1");
+		String contact_hrs_till = request.getParameter("time2");
+		//add_client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
+                System.out.println(name+age+contact_hrs_from+contact_hrs_till);
+                Client c = new Client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
+                c.add_client(c);
+		doGet(request, response);
+	
     }
 
     /**
