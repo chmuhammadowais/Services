@@ -4,6 +4,7 @@
  */
 package Servlets;
 
+import Management.ServiceForm;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -70,16 +71,19 @@ public class ServiceFormHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String Full_name = request.getParameter("");
-        String Email = request.getParameter("");
-        int Contact = Integer.parseInt( request.getParameter(""));
-        String Address = request.getParameter("");
-        String Payment_method = request.getParameter("");
-        String Insurance = request.getParameter("");
-        String Ownership = request.getParameter("");
-        String Description = request.getParameter("");
+        String Full_name = request.getParameter("name");
+        String Email = request.getParameter("email");
+        int Contact = Integer.parseInt( request.getParameter("contact"));
+        String Address = request.getParameter("address");
+        String Payment_method = request.getParameter("payment");
+        String Insurance = request.getParameter("insurance");
+        String Ownership = request.getParameter("ownership");
+        String Description = request.getParameter("description");
         
         
+        
+        ServiceForm srcvfrm = new ServiceForm(Full_name,Email,Contact,Address,Payment_method,Insurance,Ownership,Description);
+        srcvfrm.add_srvc(srcvfrm);
         processRequest(request, response);
     }
 

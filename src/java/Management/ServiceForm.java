@@ -4,13 +4,20 @@
  */
 package Management;
 
+import DB.DatabaseCon;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author Muhammad
  */
 public class ServiceForm {
        private String Full_name;
-       private String Emai;
+       private String Email;
        private int Contact;
        private String Address;
        private String Payment_method;
@@ -18,9 +25,9 @@ public class ServiceForm {
        private String Ownership;
        private String Description;
 
-    public ServiceForm(String Full_name, String Emai, int Contact, String Address, String Payment_method, String Insurance, String Ownership, String Description) {
+    public ServiceForm(String Full_name, String Email, int Contact, String Address, String Payment_method, String Insurance, String Ownership, String Description) {
         this.Full_name = Full_name;
-        this.Emai = Emai;
+        this.Email = Email;
         this.Contact = Contact;
         this.Address = Address;
         this.Payment_method = Payment_method;
@@ -38,11 +45,11 @@ public class ServiceForm {
     }
 
     public String getEmai() {
-        return Emai;
+        return Email;
     }
 
     public void setEmai(String Emai) {
-        this.Emai = Emai;
+        this.Email = Emai;
     }
 
     public int getContact() {
@@ -95,15 +102,30 @@ public class ServiceForm {
 
     @Override
     public String toString() {
-        return "ServiceForm{" + "Full_name=" + Full_name + ", Emai=" + Emai + ", Contact=" + Contact + ", Address=" + Address + ", Payment_method=" + Payment_method + ", Insurance=" + Insurance + ", Ownership=" + Ownership + ", Description=" + Description + '}';
+        return "ServiceForm{" + "Full_name=" + Full_name + ", Emai=" + Email + ", Contact=" + Contact + ", Address=" + Address + ", Payment_method=" + Payment_method + ", Insurance=" + Insurance + ", Ownership=" + Ownership + ", Description=" + Description + '}';
     }
         
-    public boolean add_srvc(String Full_name,  String Email, int Contact,  String Address, String Payment_method, String Insurance,String Ownership, String Description){
+    public boolean add_srvc(ServiceForm srvcfrm){
         if(Full_name != null && Email != null && Contact != 0 && Address!= null && Payment_method != null && Insurance != null && Ownership != null && Description != null){
           try{
+                Connection conn = DatabaseCon.connection();
+                PreparedStatement ps = conn.prepareStatement("insert into Services values(?,?,?,?,?,?,?,?,?)");
+                ps.setString(1, srvcfrm.Full_name);
+                ps.setString(2, srvcfrm.Email);
+                ps.setInt(3, srvcfrm.Contact);
+                ps.setString(4, srvcfrm.Address);
+                ps.setString(5, srvcfrm.Payment_method);
+                ps.setString(6, srvcfrm.Insurance);
+                ps.setString(7,srvcfrm.Ownership );
+                ps.setString(8, srvcfrm.Description);
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+                LocalDateTime now = LocalDateTime.now();  
+                ps.setString(9,now.toString() );
+               ps.executeUpdate();
+               System.out.println("Form Added");
               return true;
           }
-          catch(Exception e){
+          catch(SQLException e){
               System.out.println("Exception : "+e);
               return false;
           }

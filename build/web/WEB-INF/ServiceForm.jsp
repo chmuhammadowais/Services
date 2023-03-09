@@ -41,57 +41,57 @@
      %>
     </div>
 
-    <form action="" class="form_container">
+    <form action="ServiceFormHandler" method="post" class="form_container">
         <div class="innerformcontainer">
             <div class="formitem">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" class="input_field">
+                <input type="text" id="name" class="input_field" name="name">
             </div>
            
             <div class="formitem">
                 <label for="email">Email</label>
-                <input type="email" id="email" class="input_field">
+                <input type="email" id="email" class="input_field" name="email">
             </div>
             
             <div class="formitem">
                 <label for="contact">Contact</label>
-                <input type="tel" id="contact" class="input_field">
+                <input type="tel" id="contact" class="input_field" name="contact">
             </div>
             
             <div class="formitem">
                  <label for="address">Address</label>
-                <input type="text" id="address" class="input_field">
+                 <input type="text" id="address" class="input_field" name="address">
             </div>
-           
+            
             <div class="formitem">
                 <label for="payment">Payment Method</label>
-                <input type="text" id="payment" class="input_field">
+                <input type="text" id="payment" class="input_field" name="payment">
             </div>
             
             <div class="formitem">
                 <label for="insurance">House Insured</label>
                 <div class="radio_btn">
                     <label for="insured">Insured</label>
-                    <input type="radio" id="insured" name="insurance" value="yes">
+                    <input type="radio" id="insured" name="insurance" value="yes" name="insurance">
                     
                     <label for="notisnured">Not Insured</label>
-                    <input type="radio" id="notinsured" name="insurance" value="no">
+                    <input type="radio" id="notinsured" name="insurance" value="no" name="insurance">
                 </div>
                
             </div>
            
             <div class="formitem">
                 <label for="cost">Service Fee</label>
-                <input type="number" id="cost" class="input_field" value="00" readonly>
+                <input type="number" id="cost" class="input_field" value="1000" readonly>
             </div>
     
             <div class="formitem">
                 <label for="ownership">House Ownership</label>
                 <div class="radio_btn">
                     <label for="yes">Yes</label>
-                    <input type="radio" id="yes" name="ownership" value="yes">
+                    <input type="radio" id="yes" name="ownership" value="yes" name="ownership">
                     <label for="no">No</label>
-                    <input type="radio" id="no" name="ownership" value="no">
+                    <input type="radio" id="no" name="ownership" value="no" name="ownership">
                 </div>
                 
             </div>
@@ -100,7 +100,7 @@
        
         <div class="formtextarea">
             <label class="desc" for="description">Description</label>
-            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            <textarea name="description" id="description" cols="30" rows="10" name="description"></textarea>
         </div>
         
         <button type="submit" class="submit_btn">Submit</button>
