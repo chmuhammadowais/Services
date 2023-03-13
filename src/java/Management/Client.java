@@ -147,13 +147,14 @@ public class Client {
         return false;
     }
     }
-    public boolean verify_client(String email, String password){
+    public static boolean verify_client(String email, String password){
         if(email != null && password != null){
             try{
                 Connection conn = DatabaseCon.connection();
                 PreparedStatement ps = conn.prepareStatement("select email, password from clients where email=?");
                 ps.setString(1, email);
                 ResultSet rs = ps.executeQuery();
+                rs.next();
                 String db_email = rs.getString("email");
                 String db_password = rs.getString("password");
                 

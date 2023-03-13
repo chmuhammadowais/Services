@@ -27,9 +27,9 @@
 
     <div class="accountavatar"></div>
 
-    <form action="" class="otherserviceform">
-        <input type="email" class="input_field" placeholder="Email">
-        <input type="password" class="input_field" placeholder="Password">
+    <form action="SigninHandler" method="post" class="otherserviceform">
+        <input type="email" class="input_field" placeholder="Email" name="email">
+        <input type="password" class="input_field" placeholder="Password" name="password">
         <button type="submit" class="submit_btn">Submit</button>
     </form>
 
