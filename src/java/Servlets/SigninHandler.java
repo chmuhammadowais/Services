@@ -8,8 +8,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.util.ArrayList;
 
 
 /**
@@ -74,10 +77,25 @@ public class SigninHandler extends HttpServlet {
         String password = request.getParameter("password");
         boolean flag = Client.verify_client(email, password);
         if(flag){
+              ArrayList client_info = Client.retrieve_info(email,password);
+            for (Object data : client_info) {
+                System.out.println(data);
+            }
+            
+               HttpSession session = request.getSession();
+               session.setAttribute("Full_name", client_info.get(0));
+               session.setAttribute("Contact", client_info.get(1));
+               session.setAttribute("Email", client_info.get(2));
+               session.setAttribute("Address", client_info.get(3));
+               PrintWriter writer = response.getWriter();
+        writer.println("Session ID: " + session.getId());
+        writer.println("Creation Time: " + new Date(session.getCreationTime()));
+        writer. println("Last Accessed Time: " + new Date(session.getLastAccessedTime()));
+        writer.println(session.getAttribute("Full_name"));
               processRequest(request, response);
         }
         else{
-          
+        
         }
       
     }

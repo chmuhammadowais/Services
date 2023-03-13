@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -181,6 +182,37 @@ public class Client {
             return false;
         }
        
+    }
+    public static ArrayList retrieve_info(String email, String password){
+        if(email != null && password != null){
+            try{
+                Connection conn = DatabaseCon.connection();
+                PreparedStatement ps = conn.prepareStatement("select full_name,contact,email,address from clients where email=? and password=?");
+                ps.setString(1, email);
+                ps.setString(2, password);
+                ResultSet rs = ps.executeQuery();
+                rs.next();
+                String Full_name = rs.getString("Full_name");
+                int Contact = Integer.parseInt(rs.getString("Contact"));
+                String Email = rs.getString("Email");
+                String Address = rs.getString("Address");
+                
+                ArrayList client_info = new ArrayList();
+                client_info.add(Full_name);
+                client_info.add(Contact);
+                client_info.add(Email);
+                client_info.add(Address);
+                
+                return client_info;
+            }
+            catch(SQLException e){
+                System.out.println("Exception : "+e);
+                return null;
+            }
+        }
+        else{
+            return null;
+        }
     }
 }
 
