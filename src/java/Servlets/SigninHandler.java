@@ -87,15 +87,16 @@ public class SigninHandler extends HttpServlet {
                session.setAttribute("Contact", client_info.get(1));
                session.setAttribute("Email", client_info.get(2));
                session.setAttribute("Address", client_info.get(3));
-               PrintWriter writer = response.getWriter();
-        writer.println("Session ID: " + session.getId());
-        writer.println("Creation Time: " + new Date(session.getCreationTime()));
-        writer. println("Last Accessed Time: " + new Date(session.getLastAccessedTime()));
-        writer.println(session.getAttribute("Full_name"));
-              processRequest(request, response);
+//               PrintWriter writer = response.getWriter();
+//               writer.println("Session ID: " + session.getId());
+//               writer.println("Creation Time: " + new Date(session.getCreationTime()));
+//               writer. println("Last Accessed Time: " + new Date(session.getLastAccessedTime()));
+//               writer.println(session.getAttribute("Full_name"));
+         //     processRequest(request, response);
+         response.sendRedirect("/Services/Services.jsp");
         }
         else{
-        
+        response.sendRedirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
         }
       
     }

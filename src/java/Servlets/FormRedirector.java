@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -57,10 +58,21 @@ public class FormRedirector extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().append("Served at: ").append(request.getContextPath());
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/ServiceForm.jsp");
-        dispatcher.forward(request, response);
-        processRequest(request, response);
+     
+        HttpSession session = request.getSession();
+        String Full_name =  (String)session.getAttribute("Full_name");
+        Integer Contact = (Integer)session.getAttribute("Contact");
+        String Email = (String)session.getAttribute("Email");
+        String Address = (String)session.getAttribute("Address");
+        if(Full_name != null && Contact != null  && Email != null && Address != null){
+                 response.getWriter().append("Served at: ").append(request.getContextPath());
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/ServiceForm.jsp");
+                dispatcher.forward(request, response);
+          //      processRequest(request, response);
+        }
+        else{
+        response.sendRedirect("/Services/SigninSignup.jsp");
+        }
         
     }
 
