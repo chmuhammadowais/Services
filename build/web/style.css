@@ -279,6 +279,14 @@ h3{
     font-size: 14px;
     font-family: Open Sans;
 }
+.input_field_options{
+    width: 305px;
+    height: 30px;
+    border-radius: 5px;
+    border-width: 1px;
+    font-size: 14px;
+    font-family: Open Sans;
+}
 .input_field_time{
     width: 130px;
     height: 25px;

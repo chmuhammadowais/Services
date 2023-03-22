@@ -64,8 +64,12 @@
             </div>
             
             <div class="formitem">
-                <label for="payment">Payment Method</label>
-                <input type="text" id="payment" class="input_field" name="payment">
+                <label for="payment">Payment</label>
+<!--                <input type="text" id="payment" class="input_field" name="payment">-->
+                <select class="input_field_options">
+                    <option value="cod">COD</option>
+                    <option value="creditcard">Credit / Debit</option>
+                    </select>
             </div>
             
             <div class="formitem">
