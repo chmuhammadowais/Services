@@ -45,22 +45,22 @@
         <div class="innerformcontainer">
             <div class="formitem">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" class="input_field" name="name">
+                <input type="text" id="name" class="input_field" name="name" value = "<%out.println(session.getAttribute("Full_name")); %>" readonly>
             </div>
            
             <div class="formitem">
                 <label for="email">Email</label>
-                <input type="email" id="email" class="input_field" name="email">
+                <input type="email" id="email" class="input_field" name="email" value="<%out.println(session.getAttribute("Email"));%>" readonly>
             </div>
             
             <div class="formitem">
                 <label for="contact">Contact</label>
-                <input type="tel" id="contact" class="input_field" name="contact">
+                <input type="tel" id="contact" class="input_field" name="contact" value="<%out.println(session.getAttribute("Contact"));%>" readonly>
             </div>
             
             <div class="formitem">
                  <label for="address">Address</label>
-                 <input type="text" id="address" class="input_field" name="address">
+                 <input type="text" id="address" class="input_field" name="address" value="<%out.println(session.getAttribute("Address"));%>" readonly>
             </div>
             
             <div class="formitem">
