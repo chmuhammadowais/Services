@@ -66,7 +66,7 @@
             <div class="formitem">
                 <label for="payment">Payment</label>
 <!--                <input type="text" id="payment" class="input_field" name="payment">-->
-                <select class="input_field_options">
+                <select class="input_field_options" name="payment_opt">
                     <option value="cod">COD</option>
                     <option value="creditcard">Credit / Debit</option>
                     </select>
@@ -76,26 +76,26 @@
                 <label for="insurance">House Insured</label>
                 <div class="radio_btn">
                     <label for="insured">Insured</label>
-                    <input type="radio" id="insured" name="insurance" value="yes" name="insurance">
+                    <input type="radio" id="insured" name="insurance" value="yes" name="insurance" required>
                     
                     <label for="notisnured">Not Insured</label>
-                    <input type="radio" id="notinsured" name="insurance" value="no" name="insurance">
+                    <input type="radio" id="notinsured" name="insurance" value="no" name="insurance" required>
                 </div>
                
             </div>
            
             <div class="formitem">
                 <label for="cost">Service Fee</label>
-                <input type="number" id="cost" class="input_field" value="1000" readonly>
+                <input type="number" id="cost" class="input_field" value="1000" readonly required>
             </div>
     
             <div class="formitem">
                 <label for="ownership">House Ownership</label>
                 <div class="radio_btn">
                     <label for="yes">Yes</label>
-                    <input type="radio" id="yes" name="ownership" value="yes" name="ownership">
+                    <input type="radio" id="yes" name="ownership" value="yes" name="ownership" required>
                     <label for="no">No</label>
-                    <input type="radio" id="no" name="ownership" value="no" name="ownership">
+                    <input type="radio" id="no" name="ownership" value="no" name="ownership" required>
                 </div>
                 
             </div>
@@ -104,7 +104,7 @@
        
         <div class="formtextarea">
             <label class="desc" for="description">Description</label>
-            <textarea name="description" id="description" cols="30" rows="10" name="description"></textarea>
+            <textarea name="description" id="description" cols="30" rows="10" name="description" required></textarea>
         </div>
         
         <button type="submit" class="submit_btn">Submit</button>

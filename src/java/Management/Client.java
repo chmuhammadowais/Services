@@ -187,21 +187,29 @@ public class Client {
         if(email != null && password != null){
             try{
                 Connection conn = DatabaseCon.connection();
-                PreparedStatement ps = conn.prepareStatement("select full_name,contact,email,address from clients where email=? and password=?");
+                PreparedStatement ps = conn.prepareStatement("select Full_name, Age, Gender, Contact, Email, Address, Contact_hrs_from, Contact_hrs_till from clients where email=? and password=?");
                 ps.setString(1, email);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
                 rs.next();
                 String Full_name = rs.getString("Full_name");
+                int Age =  Integer.parseInt(rs.getString("Age"));
+                String Gender = rs.getString("Gender");
                 int Contact = Integer.parseInt(rs.getString("Contact"));
                 String Email = rs.getString("Email");
                 String Address = rs.getString("Address");
+                String Contact_hrs_from = rs.getString("Contact_hrs_from");
+                String Contact_hrs_till = rs.getString("Contact_hrs_till");
                 
                 ArrayList client_info = new ArrayList();
                 client_info.add(Full_name);
+                client_info.add(Age);
+                client_info.add(Gender);
                 client_info.add(Contact);
                 client_info.add(Email);
                 client_info.add(Address);
+                client_info.add(Contact_hrs_from);
+                client_info.add(Contact_hrs_till);
                 
                 return client_info;
             }

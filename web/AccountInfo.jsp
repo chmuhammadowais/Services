@@ -32,27 +32,27 @@
         <div class="innerformcontainer">
             <div class="formitem">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" class="input_field" name="name">
+                <input type="text" id="name" class="input_field" name="name" value="<%out.println(session.getAttribute("Full_name")); %>">
             </div>
 
             <div class="formitem">
                 <label for="age">Age</label>
-                <input type="number" id="age" class="input_field" name="age">
+                <input type="number" id="age" class="input_field" name="age" value=<%out.println(session.getAttribute("Age"));%>>
             </div>
 
             <div class="formitem">
                 <label for="gender">Gender</label>
-                <input type="text" id="gender" class="input_field" name="gender">
+                <input type="text" id="gender" class="input_field" name="gender" value="<%out.println(session.getAttribute("Gender")); %>">
             </div>
 
             <div class="formitem">
                 <label for="contact">Contact</label>
-                <input type="tel" id="contact" class="input_field" name="contact">
+                <input type="tel" id="contact" class="input_field" name="contact" value="<%out.println(session.getAttribute("Contact")); %>">
             </div>
 
             <div class="formitem">
                 <label for="email">Email</label>
-                <input type="email" id="email" class="input_field" name="email">
+                <input type="email" id="email" class="input_field" name="email" value="<%out.println(session.getAttribute("Email")); %>">
             </div>
 
             <div class="formitem">
@@ -62,13 +62,13 @@
 
             <div class="formitem">
                 <label for="address">Address</label>
-                <input type="text" id="address" class="input_field" name="address">
+                <input type="text" id="address" class="input_field" name="address" value="<%out.println(session.getAttribute("Address")); %>">
             </div>
 
             <div class="formitem">
                 <label for="hrs">Contact Hours</label>
-                <input type="time" id="hrs" class="input_field_time" name="time1" required>
-                <input type="time" id="hrs" class="input_field_time" name="time2" required>
+                <input type="time" id="hrs" class="input_field_time" name="time1" value=<%out.println(session.getAttribute("Contact_hrs_from")); %> required >
+                <input type="time" id="hrs" class="input_field_time" name="time2" value=<%out.println(session.getAttribute("Contact_hrs_till")); %> required>
             </div>
 
         

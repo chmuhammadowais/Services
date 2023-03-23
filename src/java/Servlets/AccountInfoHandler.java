@@ -4,20 +4,20 @@
  */
 package Servlets;
 
-import Management.ServiceForm;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 
 /**
  *
  * @author Muhammad
  */
-public class ServiceFormHandler extends HttpServlet {
+public class AccountInfoHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,18 +30,30 @@ public class ServiceFormHandler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServiceFormHandler</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServiceFormHandler at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+   //     response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet AccountInfoHandler</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet AccountInfoHandler at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//
+//        }
+  HttpSession session = request.getSession();
+        String Full_name =  (String)session.getAttribute("Full_name");
+        Integer Contact = (Integer)session.getAttribute("Contact");
+        String Email = (String)session.getAttribute("Email");
+        String Address = (String)session.getAttribute("Address");
+        if(Full_name == null && Contact == null  && Email == null && Address == null){
+                response.sendRedirect("/Services/SigninSignup.jsp");
+        }
+        else{
+        response.sendRedirect("/Services/AccountInfo.jsp");
         }
     }
 
@@ -71,19 +83,6 @@ public class ServiceFormHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String Full_name = request.getParameter("name");
-        String Email = request.getParameter("email");
-        int Contact = Integer.parseInt( request.getParameter("contact"));
-        String Address = request.getParameter("address");
-        String Payment_method = request.getParameter("payment_opt");
-        String Insurance = request.getParameter("insurance");
-        String Ownership = request.getParameter("ownership");
-        String Description = request.getParameter("description");
-        
-        
-        
-        ServiceForm srcvfrm = new ServiceForm(Full_name,Email,Contact,Address,Payment_method,Insurance,Ownership,Description);
-        srcvfrm.add_srvc(srcvfrm);
         processRequest(request, response);
     }
 

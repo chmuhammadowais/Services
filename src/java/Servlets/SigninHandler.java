@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.ArrayList;
 
 
@@ -84,9 +83,13 @@ public class SigninHandler extends HttpServlet {
             
                HttpSession session = request.getSession();
                session.setAttribute("Full_name", client_info.get(0));
-               session.setAttribute("Contact", client_info.get(1));
-               session.setAttribute("Email", client_info.get(2));
-               session.setAttribute("Address", client_info.get(3));
+               session.setAttribute("Age", client_info.get(1));
+               session.setAttribute("Gender", client_info.get(2));
+               session.setAttribute("Contact", client_info.get(3));
+               session.setAttribute("Email", client_info.get(4));
+               session.setAttribute("Address", client_info.get(5));
+               session.setAttribute("Contact_hrs_from", client_info.get(6));
+               session.setAttribute("Contact_hrs_till", client_info.get(7));
 //               PrintWriter writer = response.getWriter();
 //               writer.println("Session ID: " + session.getId());
 //               writer.println("Creation Time: " + new Date(session.getCreationTime()));

@@ -20,6 +20,10 @@
         <servlet-name>SigninHandler</servlet-name>
         <servlet-class>Servlets.SigninHandler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AccountInfoHandler</servlet-name>
+        <servlet-class>Servlets.AccountInfoHandler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FormRedirector</servlet-name>
         <url-pattern>/FormRedirector</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>SigninHandler</servlet-name>
         <url-pattern>/SigninHandler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountInfoHandler</servlet-name>
+        <url-pattern>/AccountInfoHandler</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
