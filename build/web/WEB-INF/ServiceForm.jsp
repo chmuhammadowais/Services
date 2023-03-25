@@ -33,6 +33,7 @@
     <%
     String type = request.getParameter("btn");
      if(type != null){
+     session.setAttribute("Service",type);
     	 out.print(type);
      }
      else{

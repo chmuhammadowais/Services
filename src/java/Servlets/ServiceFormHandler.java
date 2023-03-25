@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -71,18 +72,19 @@ public class ServiceFormHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String Full_name = request.getParameter("name");
         String Email = request.getParameter("email");
         int Contact = Integer.parseInt( request.getParameter("contact"));
         String Address = request.getParameter("address");
-        String Service = "";
+        String Service = (String)session.getAttribute("Service");
         String Payment_method = request.getParameter("payment_opt");
         String Insurance = request.getParameter("insurance");
         String Ownership = request.getParameter("ownership");
         String Description = request.getParameter("description");
         
         
-        
+     //   System.out.println(Full_name+Email+Contact+Address+Service+Payment_method+Insurance+Ownership+Description);
         ServiceForm srcvfrm = new ServiceForm(Full_name,Email,Contact,Address,Service,Payment_method,Insurance,Ownership,Description);
         srcvfrm.add_srvc(srcvfrm);
         processRequest(request, response);

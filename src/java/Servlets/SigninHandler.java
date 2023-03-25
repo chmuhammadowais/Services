@@ -77,9 +77,13 @@ public class SigninHandler extends HttpServlet {
         boolean flag = Client.verify_client(email, password);
         if(flag){
               ArrayList client_info = Client.retrieve_info(email,password);
+              System.out.println("==============");
+              System.out.println("*** User logged in ***");
+              System.out.println("==============");
             for (Object data : client_info) {
                 System.out.println(data);
             }
+            System.out.println("==============");
             
                HttpSession session = request.getSession();
                session.setAttribute("Full_name", client_info.get(0));
