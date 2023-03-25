@@ -222,5 +222,41 @@ public class Client {
             return null;
         }
     }
+    public boolean update_info(Client obj){
+        String name = obj.Full_name;
+        int age = obj.Age;
+        String gender = obj.Gender;
+        int contact = obj.Contact;
+        String email = obj.Email;
+        String password = obj.Password;
+        String address = obj.Address;
+        String contact_hrs_from = obj.Contact_hrs_from;
+        String contact_hrs_till = obj.Contact_hrs_till;
+        
+        try{
+             Connection con = DatabaseCon.connection();
+             PreparedStatement ps = con.prepareStatement("update Clients set Full_name=?, Age=?, Gender=?, Contact=?, Email=?, Password=?,Address=?, Contact_hrs_from=?, Contact_hrs_till=? where Contact = ?; ");
+             ps.setString(1, name);
+             ps.setInt(2, age);
+             ps.setString(3, gender);
+             ps.setInt(4, contact);
+             ps.setString(5, email); 
+             ps.setString(6, password);
+             ps.setString(7, address);
+             ps.setString(8, contact_hrs_from);
+             ps.setString(9, contact_hrs_till);
+             ps.setInt(10, contact);
+             
+             ps.executeUpdate();
+             System.out.println("Information Updated");
+             return true;
+        }
+        catch(SQLException e){
+            System.out.println("Exception : "+e);
+            return false;
+        }
+       
+        
+    }
 }
 

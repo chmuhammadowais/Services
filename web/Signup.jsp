@@ -1,11 +1,10 @@
 <%-- 
-    Document   : AccountInfo
-    Created on : Mar 6, 2023, 9:25:21 AM
+    Document   : Signup
+    Created on : Mar 25, 2023, 5:29:07 PM
     Author     : Muhammad
 --%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +27,7 @@
 
     <div class="accountavatar"></div>
 
-    <form action="AccountInfoHandler"  method="post" class="form_container">
+    <form action="SignupHandler"  method="post" class="form_container">
         <div class="innerformcontainer">
             <div class="formitem">
                 <label for="name">Full Name</label>
@@ -103,7 +102,7 @@
 
         
         </div>
-         <button type="submit" class="submit_btn">Update</button>
+         <button type="submit" class="submit_btn">Signup</button>
     </form>
 </body>
 </html>

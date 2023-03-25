@@ -3,22 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package Servlets;
+
 import Management.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 
 /**
  *
  * @author Muhammad
  */
-public class SigninHandler extends HttpServlet {
+public class AccountInfoHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +36,10 @@ public class SigninHandler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SigninHandler</title>");            
+            out.println("<title>Servlet AccountInfoHandler</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SigninHandler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AccountInfoHandler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,40 +71,20 @@ public class SigninHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        boolean flag = Client.verify_client(email, password);
-        if(flag){
-              ArrayList client_info = Client.retrieve_info(email,password);
-              System.out.println("======================");
-              System.out.println("*** User logged in ***");
-              System.out.println("======================");
-            for (Object data : client_info) {
-                System.out.println(data);
-            }
-            System.out.println("==============");
-            
-               HttpSession session = request.getSession();
-               session.setAttribute("Full_name", client_info.get(0));
-               session.setAttribute("Age", client_info.get(1));
-               session.setAttribute("Gender", client_info.get(2));
-               session.setAttribute("Contact", client_info.get(3));
-               session.setAttribute("Email", client_info.get(4));
-               session.setAttribute("Address", client_info.get(5));
-               session.setAttribute("Contact_hrs_from", client_info.get(6));
-               session.setAttribute("Contact_hrs_till", client_info.get(7));
-//               PrintWriter writer = response.getWriter();
-//               writer.println("Session ID: " + session.getId());
-//               writer.println("Creation Time: " + new Date(session.getCreationTime()));
-//               writer. println("Last Accessed Time: " + new Date(session.getLastAccessedTime()));
-//               writer.println(session.getAttribute("Full_name"));
-         //     processRequest(request, response);
-         response.sendRedirect("/Services/Services.jsp");
-        }
-        else{
-        response.sendRedirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-        }
-      
+     String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String gender = request.getParameter("gender");
+		int contact = Integer.parseInt(request.getParameter("contact"));
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String address = request.getParameter("address");
+		String contact_hrs_from = request.getParameter("time1");
+		String contact_hrs_till = request.getParameter("time2");
+		//add_client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
+                System.out.println(name+age+contact_hrs_from+contact_hrs_till);
+                Client c = new Client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
+            c.update_info(c);
+        processRequest(request, response);
     }
 
     /**

@@ -73,8 +73,9 @@ public class SignupRequestHandler extends HttpServlet {
           String type = request.getParameter("btn");
 		System.out.println(type);
 		if(type.equals("Email")) {
-			request.setAttribute("val", type);
-			request.getRequestDispatcher("AccountInfo.jsp").forward(request, response);
+//			request.setAttribute("val", type);
+//			request.getRequestDispatcher("AccountInfo.jsp").forward(request, response);
+                                        response.sendRedirect("/Services/Signup.jsp");
 		}
 		else if("".equals(type)) {
 			

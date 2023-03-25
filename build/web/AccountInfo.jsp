@@ -28,7 +28,7 @@
 
     <div class="accountavatar"></div>
 
-    <form action="SignupHandler"  method="post" class="form_container">
+    <form action="AccountInfoHandler"  method="post" class="form_container">
         <div class="innerformcontainer">
             <div class="formitem">
                 <label for="name">Full Name</label>
@@ -103,18 +103,7 @@
 
         
         </div>
-         <button type="submit" class="submit_btn">
-        <%
-        	String submit_val = (String)request.getAttribute("val");
-             if(submit_val != null){
-            	  out.print("Submit");
-             }
-             else{
-            	 out.println("Update");
-             }
-
-        %>
-       </button>
+         <button type="submit" class="submit_btn">Update</button>
     </form>
 </body>
 </html>
