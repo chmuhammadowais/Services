@@ -75,6 +75,7 @@ public class ServiceFormHandler extends HttpServlet {
         String Email = request.getParameter("email");
         int Contact = Integer.parseInt( request.getParameter("contact"));
         String Address = request.getParameter("address");
+        String Service = "";
         String Payment_method = request.getParameter("payment_opt");
         String Insurance = request.getParameter("insurance");
         String Ownership = request.getParameter("ownership");
@@ -82,7 +83,7 @@ public class ServiceFormHandler extends HttpServlet {
         
         
         
-        ServiceForm srcvfrm = new ServiceForm(Full_name,Email,Contact,Address,Payment_method,Insurance,Ownership,Description);
+        ServiceForm srcvfrm = new ServiceForm(Full_name,Email,Contact,Address,Service,Payment_method,Insurance,Ownership,Description);
         srcvfrm.add_srvc(srcvfrm);
         processRequest(request, response);
     }
