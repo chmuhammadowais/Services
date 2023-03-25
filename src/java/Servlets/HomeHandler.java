@@ -4,7 +4,6 @@
  */
 package Servlets;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,11 +12,12 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+
 /**
  *
  * @author Muhammad
  */
-public class AccountInfoHandler extends HttpServlet {
+public class HomeHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,30 +30,18 @@ public class AccountInfoHandler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   //     response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet AccountInfoHandler</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet AccountInfoHandler at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//
-//        }
-  HttpSession session = request.getSession();
-        String Full_name =  (String)session.getAttribute("Full_name");
-        Integer Contact = (Integer)session.getAttribute("Contact");
-        String Email = (String)session.getAttribute("Email");
-        String Address = (String)session.getAttribute("Address");
-        if(Full_name == null && Contact == null  && Email == null && Address == null){
-                response.sendRedirect("/Services/SigninSignup.jsp");
-        }
-        else{
-        response.sendRedirect("/Services/AccountInfo.jsp");
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet HomeHandler</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet HomeHandler at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -83,7 +71,18 @@ public class AccountInfoHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         HttpSession session = request.getSession();
+        String Full_name =  (String)session.getAttribute("Full_name");
+        Integer Contact = (Integer)session.getAttribute("Contact");
+        String Email = (String)session.getAttribute("Email");
+        String Address = (String)session.getAttribute("Address");
+        if(Full_name == null && Contact == null  && Email == null && Address == null){
+                response.sendRedirect("/Services/SigninSignup.jsp");
+        }
+        else{
+        response.sendRedirect("/Services/Services.jsp");
+        }
+      //  processRequest(request, response);
     }
 
     /**

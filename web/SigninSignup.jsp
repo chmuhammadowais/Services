@@ -18,9 +18,7 @@
 	<link rel="icon" href="./resources/lock-icon-11.png">
 </head>
 <body>
-  <div class="back">
-        <a href="/Services/Services.jsp"></a>
-    </div>
+
 <div class="heading">
 		Sign in / Sign up
 	</div>

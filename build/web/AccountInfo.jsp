@@ -32,27 +32,52 @@
         <div class="innerformcontainer">
             <div class="formitem">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" class="input_field" name="name" value="<%out.println(session.getAttribute("Full_name")); %>">
+                <input type="text" id="name" class="input_field" name="name" value=<%
+                    String Full_name = (String) session.getAttribute("Full_name");
+                    if(Full_name != null){
+                        out.println(Full_name);
+                    }
+                %>>
             </div>
 
             <div class="formitem">
                 <label for="age">Age</label>
-                <input type="number" id="age" class="input_field" name="age" value=<%out.println(session.getAttribute("Age"));%>>
+                <input type="number" id="age" class="input_field" name="age" value=<%
+                    Integer Age = (Integer) session.getAttribute("Age");
+                  if(Age != null){
+                  out.println(Age);
+                }
+                %>>
             </div>
 
             <div class="formitem">
                 <label for="gender">Gender</label>
-                <input type="text" id="gender" class="input_field" name="gender" value="<%out.println(session.getAttribute("Gender")); %>">
+                <input type="text" id="gender" class="input_field" name="gender" value=<%
+                    String Gender = (String )session.getAttribute("Gender");
+                    if(Gender != null){
+                        out.println(Gender);
+                    }
+                %>>
             </div>
 
             <div class="formitem">
                 <label for="contact">Contact</label>
-                <input type="tel" id="contact" class="input_field" name="contact" value="<%out.println(session.getAttribute("Contact")); %>">
+                <input type="tel" id="contact" class="input_field" name="contact" value=<%
+                  Integer Contact = (Integer) session.getAttribute("Contact");
+                  if(Contact != null){
+                    out.println(Contact);
+                    }
+                %>>
             </div>
 
             <div class="formitem">
                 <label for="email">Email</label>
-                <input type="email" id="email" class="input_field" name="email" value="<%out.println(session.getAttribute("Email")); %>">
+                <input type="email" id="email" class="input_field" name="email" value=<%
+                    String Email = (String) session.getAttribute("Email"); 
+                    if(Email != null){
+                     out.println(Email);
+                    }
+                %>>
             </div>
 
             <div class="formitem">
@@ -62,7 +87,12 @@
 
             <div class="formitem">
                 <label for="address">Address</label>
-                <input type="text" id="address" class="input_field" name="address" value="<%out.println(session.getAttribute("Address")); %>">
+                <input type="text" id="address" class="input_field" name="address" value=<%
+                    String Address = (String) session.getAttribute("Address");
+                    if(Address != null){
+                    out.println(Address);
+                    }
+                %>>
             </div>
 
             <div class="formitem">

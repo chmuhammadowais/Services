@@ -49,7 +49,7 @@
                <a href="" class="account"></a>
                 <div class="dropdown_content">
                     <a href="/Services/SigninSignup.jsp" target="_self">Sign-in / Sign-up</a>
-                    <a href="AccountInfoHandler">Account Information</a>
+                    <a href="/Services/AccountInfo.jsp">Account Information</a>
                 </div>
             </div>
            

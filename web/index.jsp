@@ -24,9 +24,7 @@
         <div class="icon"></div>
 
         <div class="content_bar">
-            <a href="/Services/Services.jsp">Services</a>
-    
-            
+ 
             <div class="dropdown_info">
                 <a href="">Service Options</a>
                 <div class="dropdown_content">
@@ -48,7 +46,7 @@
                <a href="" class="account"></a>
                 <div class="dropdown_content">
                     <a href="/Services/SigninSignup.jsp" target="_self">Sign-in / Sign-up</a>
-                    <a href="/Services/AccountInfo.jsp">Account Information</a>
+<!--                    <a href="/Services/AccountInfo.jsp">Account Information</a>-->
                 </div>
             </div>
            
@@ -63,7 +61,10 @@
 			<p>
 				At services we provide the best services to our customers so they would have all required household services at a click away. We prioritize our customers so that things would be done in accordance to the customer.
 			</p>
-			<a class="btn" href="/Services/Services.jsp">Explore</a>
+                        <form method="post" class="otherserviceform" action="HomeHandler">
+                            <button type="submit" class="submit_btn">Explore</button>
+                                    </form>
+
 		</div>
 	</div>
 </body>
