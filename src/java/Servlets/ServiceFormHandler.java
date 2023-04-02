@@ -73,8 +73,6 @@ public class ServiceFormHandler extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String Full_name = request.getParameter("name");
-        String Email = request.getParameter("email");
         int Contact = Integer.parseInt( request.getParameter("contact"));
         String Address = request.getParameter("address");
         String Service = (String)session.getAttribute("Service");
@@ -82,10 +80,10 @@ public class ServiceFormHandler extends HttpServlet {
         String Insurance = request.getParameter("insurance");
         String Ownership = request.getParameter("ownership");
         String Description = request.getParameter("description");
-        
+        String Service_status = "Initialize";
         
      //   System.out.println(Full_name+Email+Contact+Address+Service+Payment_method+Insurance+Ownership+Description);
-        ServiceForm srcvfrm = new ServiceForm(Full_name,Email,Contact,Address,Service,Payment_method,Insurance,Ownership,Description);
+        ServiceForm srcvfrm = new ServiceForm(Contact,Address,Service,Payment_method,Insurance,Ownership,Description, Service_status);
         srcvfrm.add_srvc(srcvfrm);
         processRequest(request, response);
     }

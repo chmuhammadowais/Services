@@ -19,8 +19,6 @@ import java.util.Random;
  * @author Muhammad
  */
 public class ServiceForm {
-       private String Full_name;
-       private String Email;
        private int Contact;
        private String Address;
        private String Service;
@@ -29,11 +27,10 @@ public class ServiceForm {
        private String Insurance;
        private String Ownership;
        private String Description;
+       private String Service_status;
        static LinkedList srvc_codes = new LinkedList();
 
-    public ServiceForm(String Full_name, String Email, int Contact, String Address,String Service,String Service_code,String Payment_method, String Insurance, String Ownership, String Description) {
-        this.Full_name = Full_name;
-        this.Email = Email;
+    public ServiceForm(int Contact, String Address,String Service,String Service_code,String Payment_method, String Insurance, String Ownership, String Description, String Service_status) {
         this.Contact = Contact;
         this.Address = Address;
         this.Service = Service;
@@ -42,11 +39,10 @@ public class ServiceForm {
         this.Insurance = Insurance;
         this.Ownership = Ownership;
         this.Description = Description;
+        this.Service_status = Service_status;
     }
 
-    public ServiceForm(String Full_name, String Email, int Contact, String Address, String Service, String Payment_method, String Insurance, String Ownership, String Description) {
-        this.Full_name = Full_name;
-        this.Email = Email;
+    public ServiceForm(int Contact, String Address, String Service, String Payment_method, String Insurance, String Ownership, String Description, String Service_status) {
         this.Contact = Contact;
         this.Address = Address;
         this.Service = Service;
@@ -54,22 +50,7 @@ public class ServiceForm {
         this.Insurance = Insurance;
         this.Ownership = Ownership;
         this.Description = Description;
-    }
-
-    public String getFull_name() {
-        return Full_name;
-    }
-
-    public void setFull_name(String Full_name) {
-        this.Full_name = Full_name;
-    }
-
-    public String getEmai() {
-        return Email;
-    }
-
-    public void setEmai(String Emai) {
-        this.Email = Emai;
+        this.Service_status = Service_status;
     }
 
     public int getContact() {
@@ -133,32 +114,38 @@ public class ServiceForm {
     public String getService_code(){
         return  Service_code;
     }
-    @Override
-    public String toString() {
-        return "ServiceForm{" + "Full_name=" + Full_name + ", Email=" + Email + ", Contact=" + Contact + ", Address=" + Address + ", Service=" + Service + ", Service Code="+ Service_code+", Payment_method=" + Payment_method + ", Insurance=" + Insurance + ", Ownership=" + Ownership + ", Description=" + Description + '}';
+
+    public String getService_status() {
+        return Service_status;
     }
 
+    public void setService_status(String Service_status) {
+        this.Service_status = Service_status;
+    }
 
+    @Override
+    public String toString() {
+        return "ServiceForm{" + "Contact=" + Contact + ", Address=" + Address + ", Service=" + Service + ", Service_code=" + Service_code + ", Payment_method=" + Payment_method + ", Insurance=" + Insurance + ", Ownership=" + Ownership + ", Description=" + Description + ", Service_status=" + Service_status + '}';
+    }
         
     public boolean add_srvc(ServiceForm srvcfrm){
-        if(Full_name != null && Email != null && Contact != 0 && Address!= null && Service != null &&Payment_method != null && Insurance != null && Ownership != null && Description != null){
+        if(Contact != 0 && Address!= null && Service != null &&Payment_method != null && Insurance != null && Ownership != null && Description != null && Service_status != null){
           try{
                 Connection conn = DatabaseCon.connection();
-                PreparedStatement ps = conn.prepareStatement("insert into Services values(?,?,?,?,?,?,?,?,?,?,?)");
-                ps.setString(1, srvcfrm.Full_name);
-                ps.setString(2, srvcfrm.Email);
-                ps.setInt(3, srvcfrm.Contact);
-                ps.setString(4, srvcfrm.Address);
-                ps.setString(5, srvcfrm.Service);
+                PreparedStatement ps = conn.prepareStatement("insert into Services values(?,?,?,?,?,?,?,?,?,?)");
+                ps.setInt(1, srvcfrm.Contact);
+                ps.setString(2, srvcfrm.Address);
+                ps.setString(3, srvcfrm.Service);
                 String code = generator();
-                ps.setString(6, code);
-                ps.setString(7, srvcfrm.Payment_method);
-                ps.setString(8, srvcfrm.Insurance);
-                ps.setString(9,srvcfrm.Ownership );
-                ps.setString(10, srvcfrm.Description);
+                ps.setString(4, code);
+                ps.setString(5, srvcfrm.Payment_method);
+                ps.setString(6, srvcfrm.Insurance);
+                ps.setString(7,srvcfrm.Ownership );
+                ps.setString(8, srvcfrm.Description);
+                ps.setString(9, srvcfrm.Service_status);
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
                 LocalDateTime now = LocalDateTime.now();  
-                ps.setString(11,now.toString() );
+                ps.setString(10,now.toString() );
                ps.executeUpdate();
                System.out.println("Form Added");
               return true;

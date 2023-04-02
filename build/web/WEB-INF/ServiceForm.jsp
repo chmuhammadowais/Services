@@ -61,7 +61,7 @@
             
             <div class="formitem">
                  <label for="address">Address</label>
-                 <input type="text" id="address" class="input_field" name="address" value="<%out.println(session.getAttribute("Address"));%>" readonly>
+                 <input type="text" id="address" class="input_field" name="address" value="<%out.println(session.getAttribute("Address"));%>" >
             </div>
             
             <div class="formitem">
