@@ -50,6 +50,12 @@
                 <div class="dropdown_content">
                     <a href="/Services/SigninSignup.jsp" target="_self">Sign-in / Sign-up</a>
                     <a href="/Services/AccountInfo.jsp">Account Information</a>
+                    <a href="/Services/LogoutHandler"><%
+                        String name = (String)session.getAttribute("Full_name");
+                        if(name != null){
+                        out.println("Logout");
+                        }
+                        %></a>
                 </div>
             </div>
            
