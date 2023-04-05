@@ -32,32 +32,32 @@
         Welcome to customer service. Please provide with details and our representative will be in touch with you shortly.
     </h3>
     
-       <form class="otherserviceform" action="">
+    <form class="otherserviceform" action="CustomerServiceHandler" method="post">
 <div class="innerformcontainer">
 	<div class="formitem">
 		<label for="name">Full Name</label>
-		<input type="text" id="name" class="input_field">
+                <input type="text" id="Full_name" name="Full_name" class="input_field">
 	</div>
    
 	<div class="formitem">
 		<label for="email">Email</label>
-		<input type="email" id="email" class="input_field">
+                <input type="email" id="Email" name="Email" class="input_field">
 	</div>
 	
 	<div class="formitem">
 		<label for="contact">Contact</label>
-		<input type="tel" id="contact" class="input_field">
+		<input type="tel" id="Contact" name="Contact" class="input_field">
 	</div>
 
 	<div class="formitem">
 		<label for="feedback_type">Feedback Type</label>
-		<input type="text" id="feedback_type" class="input_field">
+                <input type="text" id="Feedback_type" name="Feedback_type" class="input_field">
 	</div>
 </div>
 
 <div class="formtextarea">
 	<label class="desc" for="feedback">Feedback</label>
-	<textarea name="feedback" id="feedback" cols="30" rows="10"></textarea> 
+	<textarea name="Feedback" id="Feedback"  cols="30" rows="10"></textarea> 
 </div>
         <button type="submit" class="submit_btn">Submit</button>
     </form>

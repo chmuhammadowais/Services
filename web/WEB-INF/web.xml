@@ -32,6 +32,10 @@
         <servlet-name>LogoutHandler</servlet-name>
         <servlet-class>Servlets.LogoutHandler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerServiceHandler</servlet-name>
+        <servlet-class>Servlets.CustomerServiceHandler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FormRedirector</servlet-name>
         <url-pattern>/FormRedirector</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>LogoutHandler</servlet-name>
         <url-pattern>/LogoutHandler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerServiceHandler</servlet-name>
+        <url-pattern>/CustomerServiceHandler</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
