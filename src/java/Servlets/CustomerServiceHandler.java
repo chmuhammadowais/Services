@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 /**
  *
@@ -82,12 +83,15 @@ public class CustomerServiceHandler extends HttpServlet {
         System.out.println(Full_name + " " + Email + " " + Contact + " " + Feedback_Type + " " + Feedback);
         try{
               Connection con = DatabaseCon.connection();
-              PreparedStatement ps = con.prepareStatement("insert into CustomerService values(?,?,?,?,?);");
+              PreparedStatement ps = con.prepareStatement("insert into CustomerService values(?,?,?,?,?,?);");
               ps.setString(1, Full_name);
               ps.setString(2, Email);
               ps.setInt(3, Contact);
               ps.setString(4, Feedback_Type);
               ps.setString(5, Feedback);
+              LocalDate currentDate = LocalDate.now();
+              String current_date = String.valueOf(currentDate);
+              ps.setString(6, current_date);
               ps.executeUpdate();
               System.out.println("Feedback Submitted"); 
               processRequest(request, response);
