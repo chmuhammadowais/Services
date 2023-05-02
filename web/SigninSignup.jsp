@@ -16,6 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="style.css" type="text/css">
 	<link rel="icon" href="./resources/lock-icon-11.png">
+                  <script defer src="script.js"></script>
 </head>
 <body>
 
@@ -25,9 +26,16 @@
 
     <div class="accountavatar"></div>
 
-    <form action="SigninHandler" method="post" class="otherserviceform">
-        <input type="email" class="input_field" placeholder="Email" name="email">
-        <input type="password" class="input_field" placeholder="Password" name="password">
+    <form id="form" action="SigninHandler" method="post" class="otherserviceform">
+        <input type="email" id="email" class="input_field" placeholder="Email" name="email">
+        <input type="password" id="password" class="input_field" placeholder="Password" name="password">
+        <div id="err" class="err"> <%
+              String errorMessage = (String )session.getAttribute("errorMessage");
+              if(errorMessage != null){
+               out.println(errorMessage);
+            }
+             
+            %></div>
         <button type="submit" class="submit_btn">Submit</button>
     </form>
 

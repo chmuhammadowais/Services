@@ -94,6 +94,8 @@ public class SigninHandler extends HttpServlet {
                session.setAttribute("Address", client_info.get(5));
                session.setAttribute("Contact_hrs_from", client_info.get(6));
                session.setAttribute("Contact_hrs_till", client_info.get(7));
+               
+               session.removeAttribute("errorMessage");
 //               PrintWriter writer = response.getWriter();
 //               writer.println("Session ID: " + session.getId());
 //               writer.println("Creation Time: " + new Date(session.getCreationTime()));
@@ -103,7 +105,10 @@ public class SigninHandler extends HttpServlet {
          response.sendRedirect("/Services/Services.jsp");
         }
         else{
-        response.sendRedirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+            HttpSession session = request.getSession();
+           session.setAttribute("errorMessage", "Email or Password Invalid");
+           response.sendRedirect("/Services/SigninSignup.jsp");
+        
         }
       
     }
