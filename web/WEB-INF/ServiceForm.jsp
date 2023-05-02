@@ -65,9 +65,9 @@
             </div>
             
             <div class="formitem">
-                <label for="payment">Payment</label>
+                <label for="payment_opt">Payment</label>
 <!--                <input type="text" id="payment" class="input_field" name="payment">-->
-                <select class="input_field_options" name="payment_opt">
+                <select name="payment_opt" id="payment_opt" class="input_field_options">
                     <option value="cod">COD</option>
                     <option value="creditcard">Credit / Debit</option>
                     </select>
@@ -79,7 +79,7 @@
                     <label for="insured">Insured</label>
                     <input type="radio" id="insured" name="insurance" value="yes" name="insurance" required>
                     
-                    <label for="notisnured">Not Insured</label>
+                    <label for="notinsured">Not Insured</label>
                     <input type="radio" id="notinsured" name="insurance" value="no" name="insurance" required>
                 </div>
                

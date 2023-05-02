@@ -35,28 +35,28 @@
     <form class="otherserviceform" action="CustomerServiceHandler" method="post">
 <div class="innerformcontainer">
 	<div class="formitem">
-		<label for="name">Full Name</label>
+		<label for="Full_name">Full Name</label>
                 <input type="text" id="Full_name" name="Full_name" class="input_field">
 	</div>
    
 	<div class="formitem">
-		<label for="email">Email</label>
+		<label for="Email">Email</label>
                 <input type="email" id="Email" name="Email" class="input_field">
 	</div>
 	
 	<div class="formitem">
-		<label for="contact">Contact</label>
+		<label for="Contact">Contact</label>
 		<input type="tel" id="Contact" name="Contact" class="input_field">
 	</div>
 
 	<div class="formitem">
-		<label for="feedback_type">Feedback Type</label>
+		<label for="Feedback_type">Feedback Type</label>
                 <input type="text" id="Feedback_type" name="Feedback_type" class="input_field">
 	</div>
 </div>
 
 <div class="formtextarea">
-	<label class="desc" for="feedback">Feedback</label>
+	<label class="desc" for="Feedback">Feedback</label>
 	<textarea name="Feedback" id="Feedback"  cols="30" rows="10"></textarea> 
 </div>
         <button type="submit" class="submit_btn">Submit</button>

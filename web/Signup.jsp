@@ -95,9 +95,10 @@
             </div>
 
             <div class="formitem">
-                <label for="hrs">Contact Hours</label>
-                <input type="time" id="hrs" class="input_field_time" name="time1" value=<%out.println(session.getAttribute("Contact_hrs_from")); %> required >
-                <input type="time" id="hrs" class="input_field_time" name="time2" value=<%out.println(session.getAttribute("Contact_hrs_till")); %> required>
+               <label for="hrs1">Contact Hours From</label>
+                <input type="time" id="hrs1" class="input_field_time" name="time1" value=<%out.println(session.getAttribute("Contact_hrs_from")); %> required >
+                 <label for="hrs2">Till</label>
+                <input type="time" id="hrs2" class="input_field_time" name="time2" value=<%out.println(session.getAttribute("Contact_hrs_till")); %> required>
             </div>
 
         
