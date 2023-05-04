@@ -5,6 +5,7 @@
 package Servlets;
 
 import Management.ServiceForm;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,15 +35,15 @@ public class ServiceFormHandler extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServiceFormHandler</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServiceFormHandler at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+             out.println("<!DOCTYPE html>");
+             out.println("<html>");
+             out.println("<head>");
+             out.println("<title>Servlet ServiceFormHandler</title>");    
+             out.println("</head>");
+             out.println("<body>");
+             out.println("<h1>Servlet ServiceFormHandler at " + request.getContextPath() + "</h1>");        
+             out.println("</body>");
+             out.println("</html>");
         }
     }
 
@@ -58,7 +59,10 @@ public class ServiceFormHandler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+             HttpSession session = request.getSession();
+             
+             session.setAttribute("service_code", null);
+            //processRequest(request, response);
     }
 
     /**
@@ -84,8 +88,14 @@ public class ServiceFormHandler extends HttpServlet {
         
      //   System.out.println(Full_name+Email+Contact+Address+Service+Payment_method+Insurance+Ownership+Description);
         ServiceForm srcvfrm = new ServiceForm(Contact,Address,Service,Payment_method,Insurance,Ownership,Description, Service_status);
-        srcvfrm.add_srvc(srcvfrm);
-        processRequest(request, response);
+        String code = srcvfrm.add_srvc(srcvfrm);
+        System.out.println("Current Service Code: "+code);
+        session.setAttribute("service_code", code);
+        
+          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/ServiceForm.jsp");
+          dispatcher.forward(request, response);
+   //  processRequest(request, response);
+       
     }
 
     /**

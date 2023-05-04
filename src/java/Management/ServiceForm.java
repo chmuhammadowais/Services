@@ -128,7 +128,7 @@ public class ServiceForm {
         return "ServiceForm{" + "Contact=" + Contact + ", Address=" + Address + ", Service=" + Service + ", Service_code=" + Service_code + ", Payment_method=" + Payment_method + ", Insurance=" + Insurance + ", Ownership=" + Ownership + ", Description=" + Description + ", Service_status=" + Service_status + '}';
     }
         
-    public boolean add_srvc(ServiceForm srvcfrm){
+    public String add_srvc(ServiceForm srvcfrm){
         if(Contact != 0 && Address!= null && Service != null &&Payment_method != null && Insurance != null && Ownership != null && Description != null && Service_status != null){
           try{
                 Connection conn = DatabaseCon.connection();
@@ -148,15 +148,15 @@ public class ServiceForm {
                 ps.setString(10,now.toString() );
                ps.executeUpdate();
                System.out.println("Form Added");
-              return true;
+              return code;
           }
           catch(SQLException e){
               System.out.println("Exception : "+e);
-              return false;
+              return null;
           }
         }
         else{
-            return false;
+            return null;
         }
     }
         public static String generator(){

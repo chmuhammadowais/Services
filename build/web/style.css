@@ -531,6 +531,45 @@ tr:nth-child(even){
     background-color: lightgray;
 }
 
+.popup_service_code{
+    width: 500px;
+    height: 250px;
+    background-color: lightgrey;
+    border-radius: 10px;
+    border: 2px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    display: none;
+
+    top: 0;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
+.check{
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+}
+.code{
+    text-decoration: underline;
+    font-weight: bold;
+}
+.srvc_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.ok_btn{
+    width: 100px;
+    height: 25px;
+    border-radius: 10px;
+}
+
 @media only screen and (max-width:768px){
     .menu_bar{
         margin: 0 auto;

@@ -21,6 +21,7 @@
 </head>
 
 <body>
+    <%session.removeAttribute("service_code");%>
        <div class="menu_bar">
         <div class="icon"></div>
 

@@ -21,6 +21,17 @@
 	<link rel="icon" href="./resources/pages-icon.png">
 </head>
 <body>
+    
+     <div class="popup_service_code" id="popup_service_code">
+        <h2>Service Request Recieved</h2>
+        <img src="./resources/check.png" alt="" class="check">
+        <div class="srvc_info">
+            <p>Use this code to track your service request progress </p>
+            <div class="code"><%out.println(session.getAttribute("service_code")); %></div>
+        </div>
+        <button class="ok_btn" id="ok_btn">Ok</button>
+    </div>
+        
     <div class="back">
         <a href="/Services/Services.jsp"></a>
     </div>
@@ -108,7 +119,21 @@
             <textarea name="description" id="description" cols="30" rows="10" name="description" required></textarea>
         </div>
         
-        <button type="submit" class="submit_btn">Submit</button>
+            <button type="submit" class="submit_btn">Submit</button>
     </form>
+            
+             <script src="popup.js"></script>
+         <script>
+             <%String code = (String)session.getAttribute("service_code");%>
+             let code = '<%=code%>';
+//             document.write(code);
+             if(code === null || code ==="" || code ==="null"){
+               
+             }
+             else{
+                   start();
+             }
+         </script>
+    
 </body>
 </html>
