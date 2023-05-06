@@ -530,7 +530,9 @@ th{
 tr:nth-child(even){
     background-color: lightgray;
 }
-
+.err{
+    color: red;
+}
 .popup_service_code{
     width: 500px;
     height: 250px;
@@ -542,12 +544,9 @@ tr:nth-child(even){
     align-items: center;
     position: fixed;
     display: none;
-
     top: 0;
     left: 50%;
-
     transform: translate(-50%, -50%);
-
 }
 .check{
     margin: 0 auto;
@@ -569,7 +568,56 @@ tr:nth-child(even){
     height: 25px;
     border-radius: 10px;
 }
-
+.prog_cont{
+    margin: 0 auto;
+    width: 900px;
+    height: 400px;
+    background-color: lightgrey;
+    border-radius: 10px;
+    border: 2px solid black;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 30px;
+}
+.prog_bar{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    height: 10px;
+    gap: 10px;
+}
+.bar{
+    background-color: black;
+    height: 10px;
+    width: 100%;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.subitem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contact{
+    text-align: center;
+}
+.con{
+    text-align: center;
+    background-color: transparent;
+    border: transparent;
+    font-size: 17px;
+    font-weight: bold;
+}
 @media only screen and (max-width:768px){
     .menu_bar{
         margin: 0 auto;

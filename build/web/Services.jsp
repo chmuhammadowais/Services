@@ -22,6 +22,8 @@
 
 <body>
     <%session.removeAttribute("service_code");%>
+    <%session.removeAttribute("status");%>
+    <%session.removeAttribute("errorMessage");%>
        <div class="menu_bar">
         <div class="icon"></div>
 
@@ -49,11 +51,18 @@
             <div class="dropdown_info">
                <a href="" class="account"></a>
                 <div class="dropdown_content">
-                    <a href="/Services/SigninSignup.jsp" target="_self">Sign-in / Sign-up</a>
+                    
+                    <a href="/Services/SigninSignup.jsp" target="_self">
+                        <%
+                         String Email = (String)session.getAttribute("Email");
+                        if(Email == null){
+                        out.println("Sign in / Sign up");
+                        }
+                        %>
+                    </a>
                     <a href="/Services/AccountInfo.jsp">Account Information</a>
                     <a href="/Services/LogoutHandler"><%
-                        String name = (String)session.getAttribute("Full_name");
-                        if(name != null){
+                        if(Email != null){
                         out.println("Logout");
                         }
                         %></a>

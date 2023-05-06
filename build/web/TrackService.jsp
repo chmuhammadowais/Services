@@ -19,6 +19,67 @@
 	<link rel="icon" href="./resources/warehousing-icon.png">
 </head>
 <body>
+
+     <div class="prog_cont" id="prog_cont">
+        <h2>Your Service Progress</h2>
+        <div class="prog_bar">
+            <div class="subitem">
+                 <div class="bar">
+                    <canvas id="C1" width="50" height="50"></canvas>
+                 </div>
+                 <b><p>Initialize</p></b>
+            </div>
+           
+            <div class="subitem">
+                <div class="bar">
+                    <canvas id="C2" width="50" height="50"></canvas>
+                </div>
+                <b><p>In Progress</p></b>
+           </div>
+
+           <div class="subitem">
+            <div class="bar">
+                <canvas id="C3" width="50" height="50"></canvas>
+            </div>
+            <b><p>Service Completed</p></b>
+       </div>
+        </div>
+
+        <br>
+        <br>
+        
+        <div class="contact">
+            <h4>You can always get back to us through these contact numbers.</h4>
+            <label for="email">Email</label>
+            <input type="text" id="email" class="con" value="services@email.com"  readonly>
+            <label for="UAN">UAN</label>
+            <input type="text" id="UAN" class="con" value="XXX - XXX - XXX" readonly>
+        </div>
+
+        <button class="submit_btn" id="ok">Ok</button>
+    </div>
+
+     
+           <input type="hidden" id="status" class="input_field" name="address" value=<%
+                    String status = (String) session.getAttribute("status");
+                    if(status != null){
+                    out.println(status);
+                    }
+                %>>
+           
+     <script src="service_status.js"></script>
+    <script>
+     if(status === null || status ==="" || status ==="null"){
+               
+             }
+             else{
+                   start();
+             }
+//        start();
+        
+    </script>
+   
+   
 <div class="back">
         <a href="/Services/Services.jsp"></a>
     </div>
@@ -32,8 +93,8 @@
         Please provide the tracking ID that was provided to you on confirmation to track the progress of your service.
     </h3>
 
-    <form action="" class="otherserviceform">
-        <input type="text" class="input_field" placeholder="Tracking ID">
+    <form action="TrackServiceHandler" method="post" class="otherserviceform">
+        <input type="text" name="srvc_code" class="input_field" placeholder="Tracking ID">
         <button type="submit" class="submit_btn">Submit</button>
     </form>
 </body>

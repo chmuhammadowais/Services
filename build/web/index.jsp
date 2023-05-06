@@ -20,6 +20,9 @@
 	<link rel="icon" href="./resources/home.png">
 </head>
 <body>
+    <%session.removeAttribute("service_code");%>
+    <%session.removeAttribute("status");%>
+    <%session.removeAttribute("errorMessage");%>
        <div class="menu_bar">
         <div class="icon"></div>
 
