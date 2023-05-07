@@ -40,6 +40,10 @@
         <servlet-name>TrackServiceHandler</servlet-name>
         <servlet-class>Servlets.TrackServiceHandler</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HistoryHandler</servlet-name>
+        <servlet-class>Servlets.HistoryHandler</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FormRedirector</servlet-name>
         <url-pattern>/FormRedirector</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>TrackServiceHandler</servlet-name>
         <url-pattern>/TrackServiceHandler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HistoryHandler</servlet-name>
+        <url-pattern>/HistoryHandler</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

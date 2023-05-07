@@ -24,7 +24,7 @@
             }
             else{
                 x += 1;
-                y += 1;
+                y += 1*1.5;
              
                 box.style.top = y + "px";
                 box.style.display = "flex";

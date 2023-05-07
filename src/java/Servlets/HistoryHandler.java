@@ -4,22 +4,22 @@
  */
 package Servlets;
 
-import Management.ServiceForm;
-import jakarta.servlet.RequestDispatcher;
+import DB.DatabaseCon;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  *
  * @author Muhammad
  */
-public class ServiceFormHandler extends HttpServlet {
+public class HistoryHandler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,15 +35,15 @@ public class ServiceFormHandler extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-             out.println("<!DOCTYPE html>");
-             out.println("<html>");
-             out.println("<head>");
-             out.println("<title>Servlet ServiceFormHandler</title>");    
-             out.println("</head>");
-             out.println("<body>");
-             out.println("<h1>Servlet ServiceFormHandler at " + request.getContextPath() + "</h1>");        
-             out.println("</body>");
-             out.println("</html>");
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet HistoryHandler</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet HistoryHandler at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -59,10 +59,7 @@ public class ServiceFormHandler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-             HttpSession session = request.getSession();
-             
-             session.setAttribute("service_code", null);
-            //processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -76,26 +73,15 @@ public class ServiceFormHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        int Contact = Integer.parseInt( request.getParameter("contact"));
-        String Address = request.getParameter("address");
-        String Service = (String)session.getAttribute("Service");
-        String Payment_method = request.getParameter("payment_opt");
-        String Insurance = request.getParameter("insurance");
-        String Ownership = request.getParameter("ownership");
-        String Description = request.getParameter("description");
-        String Service_status = "Initialize";
-        
-     //   System.out.println(Full_name+Email+Contact+Address+Service+Payment_method+Insurance+Ownership+Description);
-        ServiceForm srcvfrm = new ServiceForm(Contact,Address,Service,0,Payment_method,Insurance,Ownership,Description, Service_status);
-        String code = srcvfrm.add_srvc(srcvfrm);
-        System.out.println("Current Service Code: "+code);
-        session.setAttribute("service_code", code);
-        
-          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/ServiceForm.jsp");
-          dispatcher.forward(request, response);
-   //  processRequest(request, response);
-       
+        try{
+              Connection con = DatabaseCon.connection();
+              PreparedStatement ps = con.prepareStatement("");
+              
+        }
+      catch(SQLException e){
+          System.out.println("Exception : "+e);
+      }
+        processRequest(request, response);
     }
 
     /**

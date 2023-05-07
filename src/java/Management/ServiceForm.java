@@ -23,6 +23,7 @@ public class ServiceForm {
        private String Address;
        private String Service;
        private String Service_code;
+       private int Total_cost;
        private String Payment_method;
        private String Insurance;
        private String Ownership;
@@ -30,11 +31,12 @@ public class ServiceForm {
        private String Service_status;
        static LinkedList srvc_codes = new LinkedList();
 
-    public ServiceForm(int Contact, String Address,String Service,String Service_code,String Payment_method, String Insurance, String Ownership, String Description, String Service_status) {
+    public ServiceForm(int Contact, String Address,String Service,String Service_code,int Total_cost,String Payment_method, String Insurance, String Ownership, String Description, String Service_status) {
         this.Contact = Contact;
         this.Address = Address;
         this.Service = Service;
         this.Service_code =  Service_code;
+        this.Total_cost = Total_cost;
         this.Payment_method = Payment_method;
         this.Insurance = Insurance;
         this.Ownership = Ownership;
@@ -42,10 +44,11 @@ public class ServiceForm {
         this.Service_status = Service_status;
     }
 
-    public ServiceForm(int Contact, String Address, String Service, String Payment_method, String Insurance, String Ownership, String Description, String Service_status) {
+    public ServiceForm(int Contact, String Address, String Service,int Total_cost, String Payment_method, String Insurance, String Ownership, String Description, String Service_status) {
         this.Contact = Contact;
         this.Address = Address;
         this.Service = Service;
+        this.Total_cost = Total_cost;
         this.Payment_method = Payment_method;
         this.Insurance = Insurance;
         this.Ownership = Ownership;
@@ -74,6 +77,14 @@ public class ServiceForm {
     }
     public String Service(){
         return this.Service;
+    }
+
+    public int getTotal_cost() {
+        return Total_cost;
+    }
+
+    public void setTotal_cost(int Total_cost) {
+        this.Total_cost = Total_cost;
     }
     
     public String getPayment_method() {
@@ -125,27 +136,28 @@ public class ServiceForm {
 
     @Override
     public String toString() {
-        return "ServiceForm{" + "Contact=" + Contact + ", Address=" + Address + ", Service=" + Service + ", Service_code=" + Service_code + ", Payment_method=" + Payment_method + ", Insurance=" + Insurance + ", Ownership=" + Ownership + ", Description=" + Description + ", Service_status=" + Service_status + '}';
+        return "ServiceForm{" + "Contact=" + Contact + ", Address=" + Address + ", Service=" + Service + ", Service_code=" + Service_code + ", Total_cost=" + Total_cost + ", Payment_method=" + Payment_method + ", Insurance=" + Insurance + ", Ownership=" + Ownership + ", Description=" + Description + ", Service_status=" + Service_status + '}';
     }
         
     public String add_srvc(ServiceForm srvcfrm){
-        if(Contact != 0 && Address!= null && Service != null &&Payment_method != null && Insurance != null && Ownership != null && Description != null && Service_status != null){
+        if(srvcfrm.Contact != 0 && srvcfrm.Address!= null && srvcfrm.Service != null && srvcfrm.Total_cost == 0 && srvcfrm.Payment_method != null && srvcfrm.Insurance != null && srvcfrm.Ownership != null && srvcfrm.Description != null && srvcfrm.Service_status != null){
           try{
                 Connection conn = DatabaseCon.connection();
-                PreparedStatement ps = conn.prepareStatement("insert into Services values(?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement ps = conn.prepareStatement("insert into Services values(?,?,?,?,?,?,?,?,?,?,?)");
                 ps.setInt(1, srvcfrm.Contact);
                 ps.setString(2, srvcfrm.Address);
                 ps.setString(3, srvcfrm.Service);
                 String code = generator();
                 ps.setString(4, code);
-                ps.setString(5, srvcfrm.Payment_method);
-                ps.setString(6, srvcfrm.Insurance);
-                ps.setString(7,srvcfrm.Ownership );
-                ps.setString(8, srvcfrm.Description);
-                ps.setString(9, srvcfrm.Service_status);
+                ps.setInt(5, 0);
+                ps.setString(6, srvcfrm.Payment_method);
+                ps.setString(7, srvcfrm.Insurance);
+                ps.setString(8,srvcfrm.Ownership );
+                ps.setString(9, srvcfrm.Description);
+                ps.setString(10, srvcfrm.Service_status);
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
                 LocalDateTime now = LocalDateTime.now();  
-                ps.setString(10,now.toString() );
+                ps.setString(11,now.toString() );
                ps.executeUpdate();
                System.out.println("Form Added");
               return code;
