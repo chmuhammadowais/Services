@@ -9,11 +9,16 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -59,6 +64,32 @@ public class HistoryHandler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+           try{
+               HttpSession session = request.getSession();
+              Connection con = DatabaseCon.connection();
+              PreparedStatement ps = con.prepareStatement("select Date_Time, Service, Date_Time,Service_status, Total_cost from Services where contact = ?");
+              Integer contact = (Integer) session.getAttribute("Contact");
+                ps.setInt(1, contact);
+              ResultSet rs = ps.executeQuery();
+              
+              List<List<String>> listOfLists = new ArrayList<>();
+              
+              while(rs.next()){
+                  String Date_Time = rs.getString("Date_Time");
+                  String Service = rs.getString("Date_Time");
+                  String Service_status = rs.getString("Service_status");
+                  int Total_cost = rs.getInt("Total_cost");
+                  
+                  listOfLists.add(new ArrayList<>(Arrays.asList(Date_Time,Service, Service_status, String.valueOf(Total_cost))));
+              }
+               System.out.println("Starting Enhanced For Loop");
+               for (List<String> listOfList : listOfLists) {
+                   System.out.println(listOfList);
+               }
+        }
+      catch(SQLException e){
+          System.out.println("Exception : "+e);
+      }
         processRequest(request, response);
     }
 
@@ -73,14 +104,6 @@ public class HistoryHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try{
-              Connection con = DatabaseCon.connection();
-              PreparedStatement ps = con.prepareStatement("");
-              
-        }
-      catch(SQLException e){
-          System.out.println("Exception : "+e);
-      }
         processRequest(request, response);
     }
 
