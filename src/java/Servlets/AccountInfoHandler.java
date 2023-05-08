@@ -89,7 +89,9 @@ public class AccountInfoHandler extends HttpServlet {
          
                 c.update_info(c,curr_cont);
                
-            response.sendRedirect("/Services/Services.jsp");
+                    session.invalidate();
+            response.sendRedirect("/Services/");
+            
 //        processRequest(request, response);
     }
 
