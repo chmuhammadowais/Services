@@ -6,10 +6,12 @@ package Management;
 
 
 import DB.DatabaseCon;
+import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -222,41 +224,36 @@ public class Client {
             return null;
         }
     }
-    public boolean update_info(Client obj){
-        String name = obj.Full_name;
-        int age = obj.Age;
-        String gender = obj.Gender;
-        int contact = obj.Contact;
-        String email = obj.Email;
-        String password = obj.Password;
-        String address = obj.Address;
-        String contact_hrs_from = obj.Contact_hrs_from;
-        String contact_hrs_till = obj.Contact_hrs_till;
+    public boolean update_info(Client obj, int curr_cont){
         
         try{
              Connection con = DatabaseCon.connection();
-             PreparedStatement ps = con.prepareStatement("update Clients set Full_name=?, Age=?, Gender=?, Contact=?, Email=?, Password=?,Address=?, Contact_hrs_from=?, Contact_hrs_till=? where Contact = ?; ");
-             ps.setString(1, name);
-             ps.setInt(2, age);
-             ps.setString(3, gender);
-             ps.setInt(4, contact);
-             ps.setString(5, email); 
-             ps.setString(6, password);
-             ps.setString(7, address);
-             ps.setString(8, contact_hrs_from);
-             ps.setString(9, contact_hrs_till);
-             ps.setInt(10, contact);
+             Statement stmt1 = con.createStatement();
+             Statement stmt2 = con.createStatement();
+             stmt1.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
+             PreparedStatement ps = con.prepareStatement("update Clients set Full_name=?, Age=?, Gender=?, Contact=?, Email=?, Password=?,Address=?, Contact_hrs_from=?, Contact_hrs_till=? where Contact = ?;");
+             ps.setString(1, obj.Full_name);
+             ps.setInt(2, obj.Age);
+             ps.setString(3, obj.Gender);
+             ps.setInt(4, obj.Contact);
+             ps.setString(5, obj.Email); 
+             ps.setString(6, obj.Password);
+             ps.setString(7, obj.Address);
+             ps.setString(8, obj.Contact_hrs_from);
+             ps.setString(9, obj.Contact_hrs_till);
+             ps.setInt(10, curr_cont);
              
-             ps.executeUpdate();
-             System.out.println("Information Updated");
+            int rows =  ps.executeUpdate();
+             System.out.println(obj.Full_name +" " + obj.Age+" "+obj.Gender+" "+obj.Contact+" "+obj.Email+" "+obj.Password+" "+obj.Address+" "+obj.Contact_hrs_from+" "+obj.Contact_hrs_till+" "+curr_cont);
+             System.out.println("Information Updated Rows Affected " + rows);
+             stmt2.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
+             
              return true;
         }
         catch(SQLException e){
             System.out.println("Exception : "+e);
             return false;
-        }
-       
-        
+        }   
     }
 }
 

@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -71,6 +72,8 @@ public class AccountInfoHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+           Integer curr_cont = (Integer) session.getAttribute("Contact");
      String name = request.getParameter("name");
 		int age = Integer.parseInt(request.getParameter("age"));
 		String gender = request.getParameter("gender");
@@ -83,7 +86,9 @@ public class AccountInfoHandler extends HttpServlet {
 		//add_client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
                 System.out.println(name+age+contact_hrs_from+contact_hrs_till);
                 Client c = new Client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
-            c.update_info(c);
+         
+                c.update_info(c,curr_cont);
+               
             response.sendRedirect("/Services/Services.jsp");
 //        processRequest(request, response);
     }
