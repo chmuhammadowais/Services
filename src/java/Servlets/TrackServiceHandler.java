@@ -35,18 +35,19 @@ public class TrackServiceHandler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TrackServiceHandler</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TrackServiceHandler at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+                response.sendRedirect("/Services");
+//        try (PrintWriter out = response.getWriter()) {
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet TrackServiceHandler</title>");            
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet TrackServiceHandler at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -77,18 +78,20 @@ public class TrackServiceHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         String srvc_code = request.getParameter("srvc_code");
+         Integer contact = (Integer) session.getAttribute("Contact");
         System.out.println(srvc_code);
         
         try{
             Connection con = DatabaseCon.connection();
-            PreparedStatement ps = con.prepareStatement("select Service_Status from services where Service_code = ?;");
+            PreparedStatement ps = con.prepareStatement("select Service_Status from services where Service_code = ? and Contact=?;");
             ps.setString(1, srvc_code);
+            ps.setInt(2, contact);
             ResultSet rs = ps.executeQuery();
             rs.next();
             String status = rs.getString("Service_Status");
-            
-            HttpSession session = request.getSession();
+          
             session.setAttribute("status", status);
             
             System.out.println(status);
@@ -96,7 +99,7 @@ public class TrackServiceHandler extends HttpServlet {
         }
         catch(SQLException e){
             System.out.println("Exception : "+e);
-
+            
     }
     }
     /**

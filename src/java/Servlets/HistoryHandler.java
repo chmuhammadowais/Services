@@ -39,7 +39,7 @@ public class HistoryHandler extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
          HttpSession session = request.getSession();
-          Integer contact = (Integer) session.getAttribute("Contact");
+         Integer contact = (Integer) session.getAttribute("Contact");
         if(contact == null){
             response.sendRedirect("/Services/SigninSignup.jsp");
         }

@@ -58,7 +58,19 @@ HttpSession session = request.getSession();
         response.sendRedirect("/Services/");
   }
   else{
-      out.println("There was an error logging out. Please try again.");
+
+    out.println("<html>");
+    out.println("<head>");
+    out.println("<title>Error</title>");
+    out.println("</head>");
+    out.println("<body>");
+
+    out.println("<script>");
+    out.println("alert('Error Logging out. Please Try again later');");
+    out.println("</script>");
+
+    out.println("</body>");
+    out.println("</html>");
   }
 
   
