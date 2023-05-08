@@ -32,7 +32,7 @@
                 <a href="">Service Options</a>
                 <div class="dropdown_content">
                     <a href="/Services/TrackService.jsp">Track Service</a>
-                    <a href="/Services/ServiceHistory.jsp">Service History</a>
+                    <a href="/Services/HistoryHandler">Service History</a>
                 </div>
             </div>
 

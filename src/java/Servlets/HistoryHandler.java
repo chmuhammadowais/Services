@@ -5,13 +5,13 @@
 package Servlets;
 
 import DB.DatabaseCon;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,18 +38,42 @@ public class HistoryHandler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet HistoryHandler</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet HistoryHandler at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+         HttpSession session = request.getSession();
+          Integer contact = (Integer) session.getAttribute("Contact");
+        if(contact == null){
+            response.sendRedirect("/Services/SigninSignup.jsp");
         }
+        else{
+             try{
+              
+              Connection con = DatabaseCon.connection();
+              PreparedStatement ps = con.prepareStatement("select Date_Time, Service, Address, Service_status, Total_cost from Services where contact = ?");
+             
+                ps.setInt(1, contact);
+              ResultSet rs = ps.executeQuery();
+              
+              List<List<String>> listOfLists = new ArrayList<>();
+              
+              while(rs.next()){
+                  String Date_Time = rs.getString("Date_Time");
+                  String Service = rs.getString("Service");
+                  String Address = rs.getString("Address");
+                  String Service_status = rs.getString("Service_status");
+                  int Total_cost = rs.getInt("Total_cost");
+                  
+                  listOfLists.add(new ArrayList<>(Arrays.asList(Date_Time,Service,Address, Service_status, String.valueOf(Total_cost))));
+              }
+  
+               request.setAttribute("History", listOfLists);
+              
+                  RequestDispatcher rd =  request.getRequestDispatcher("ServiceHistory.jsp");
+                  rd.forward(request, response);
+              }
+      catch(SQLException e){
+          System.out.println("Exception : "+e);
+      }
+        }
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,33 +88,7 @@ public class HistoryHandler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           try{
-               HttpSession session = request.getSession();
-              Connection con = DatabaseCon.connection();
-              PreparedStatement ps = con.prepareStatement("select Date_Time, Service, Date_Time,Service_status, Total_cost from Services where contact = ?");
-              Integer contact = (Integer) session.getAttribute("Contact");
-                ps.setInt(1, contact);
-              ResultSet rs = ps.executeQuery();
-              
-              List<List<String>> listOfLists = new ArrayList<>();
-              
-              while(rs.next()){
-                  String Date_Time = rs.getString("Date_Time");
-                  String Service = rs.getString("Date_Time");
-                  String Service_status = rs.getString("Service_status");
-                  int Total_cost = rs.getInt("Total_cost");
-                  
-                  listOfLists.add(new ArrayList<>(Arrays.asList(Date_Time,Service, Service_status, String.valueOf(Total_cost))));
-              }
-               System.out.println("Starting Enhanced For Loop");
-               for (List<String> listOfList : listOfLists) {
-                   System.out.println(listOfList);
-               }
-        }
-      catch(SQLException e){
-          System.out.println("Exception : "+e);
-      }
-        processRequest(request, response);
+           processRequest(request, response);
     }
 
     /**

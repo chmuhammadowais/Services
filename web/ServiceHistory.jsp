@@ -6,6 +6,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.List, java.util.ArrayList" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,48 +34,30 @@
     <div class="prevservices">
         <table>
             <tr>
-                <th>Date</th>
+                <th>Date & Time</th>
                 <th>Service</th>
                 <th>Address</th>
-                <th>Payment</th>
+                <th>Service Status</th>
+                <th>Total Cost</th>
             </tr>
-            <tr>
-                <td>Item - 1</td>
-                <td>Item - 2</td>
-                <td>Item - 3</td>
-                <td>Item - 4</td>
-            </tr>
-            <tr>
-                <td>Item - 1</td>
-                <td>Item - 2</td>
-                <td>Item - 3</td>
-                <td>Item - 4</td>
-            </tr>
-            <tr>
-                <td>Item - 1</td>
-                <td>Item - 2</td>
-                <td>Item - 3</td>
-                <td>Item - 4</td>
-            </tr>
-            <tr>
-                <td>Item - 1</td>
-                <td>Item - 2</td>
-                <td>Item - 3</td>
-                <td>Item - 4</td>
-            </tr>
-            <tr>
-                <td>Item - 1</td>
-                <td>Item - 2</td>
-                <td>Item - 3</td>
-                <td>Item - 4</td>
-            </tr>
-            <tr>
-                <td>Item - 1</td>
-                <td>Item - 2</td>
-                <td>Item - 3</td>
-                <td>Item - 4</td>
-            </tr>
+           <%
+    List<List<String>> history = (List<List<String>>)request.getAttribute("History");
+    for (List<String> row : history) {
+%>
+    <tr>
+        <td><%=row.get(0)%></td>
+        <td><%=row.get(1)%></td>
+        <td><%=row.get(2)%></td>
+        <td><%=row.get(3)%></td>
+        <td><%=row.get(4)%></td>
+    </tr>
+<%
+    }
+%>
+
+  
         </table>
+
     </div>
 </body>
 </html>
