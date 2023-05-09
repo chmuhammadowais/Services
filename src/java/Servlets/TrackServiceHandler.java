@@ -5,6 +5,7 @@
 package Servlets;
 
 import DB.DatabaseCon;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -97,9 +98,13 @@ public class TrackServiceHandler extends HttpServlet {
             System.out.println(status);
             response.sendRedirect("/Services/TrackService.jsp");
         }
-        catch(SQLException e){
-            System.out.println("Exception : "+e);
-            
+        catch(SQLException e){    
+        System.out.println("Exception : "+e);
+        session.setAttribute("SQLError", "Error Retrieving the information of the provided code.");
+        String error = (String) session.getAttribute("SQLError");
+        System.out.println(error);
+        RequestDispatcher rd = request.getRequestDispatcher("TrackService.jsp");
+        rd.forward(request, response);
     }
     }
     /**

@@ -75,11 +75,7 @@
              else{
                   start();
              }
-             if(status == ""){
-                 window.alert("Please check again");
-             }
 
-        
     </script>
    
    
@@ -98,7 +94,17 @@
 
     <form action="TrackServiceHandler" method="post" class="otherserviceform">
         <input type="text" name="srvc_code" class="input_field" placeholder="Tracking ID">
+         <div id="err" class="err"> <%
+             String error = (String) session.getAttribute("SQLError");
+              if(error != null){
+               out.print("<p>Error: " + error + "</p>");
+            }
+             
+            %></div>
         <button type="submit" class="submit_btn">Submit</button>
     </form>
+      
+
+    
 </body>
 </html>

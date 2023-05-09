@@ -24,6 +24,7 @@
     <%session.removeAttribute("service_code");%>
     <%session.removeAttribute("status");%>
     <%session.removeAttribute("errorMessage");%>
+    <%session.removeAttribute("SQLError");%>
        <div class="menu_bar">
         <div class="icon"></div>
 
