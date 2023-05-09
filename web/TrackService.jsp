@@ -59,23 +59,26 @@
         <button class="submit_btn" id="ok">Ok</button>
     </div>
 
-     
-           <input type="hidden" id="status" class="input_field" name="address" value=<%
-                    String status = (String) session.getAttribute("status");
-                    if(status != null){
-                    out.println(status);
-                    }
-                %>>
-           
+
+<script>
+    let status = '<%= session.getAttribute("status") %>';
+    console.log("Status Var = " + status);
+</script>
+
+    </script>
+    
      <script src="service_status.js"></script>
-    <script>
+     <script>
      if(status === null || status ==="" || status ==="null"){
-               
+              
              }
              else{
-                   start();
+                  start();
              }
-//        start();
+             if(status == ""){
+                 window.alert("Please check again");
+             }
+
         
     </script>
    

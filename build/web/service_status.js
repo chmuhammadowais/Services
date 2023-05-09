@@ -31,22 +31,22 @@ btn.addEventListener("click", function(){
     window.location = "/Services/Services.jsp";
 });
 
-
 let canvas;
-let status = document.getElementById("status").value;
+
 console.log("status = " + status);
 
-if(status == "Initialize"){
-    canvas = document.getElementById('C1');
-
-}
-else if(status == "InProgress"){
-    canvas = document.getElementById('C2');
-
-}
-else if(status == "Complete"){
-    canvas = document.getElementById('C3');
-  
+switch(status){
+    case "Initialize":
+         canvas = document.getElementById('C1');
+         break;
+     case "InProgress":
+          canvas = document.getElementById('C2');
+          break;
+      case "Complete":
+          canvas = document.getElementById('C3');
+          break;
+      default:
+          break;
 }
 
 console.log(canvas.id);
