@@ -621,6 +621,10 @@ tr:nth-child(even){
 #FBpopup{
     text-align: center;
 }
+#err_text{
+    color: red;
+    text-align: center;
+}
 @media only screen and (max-width:768px){
     .menu_bar{
         margin: 0 auto;

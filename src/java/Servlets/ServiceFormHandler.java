@@ -79,7 +79,9 @@ public class ServiceFormHandler extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        int Contact = Integer.parseInt( request.getParameter("contact"));
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/ServiceForm.jsp");
+        try{
+             int Contact = Integer.parseInt( request.getParameter("contact"));
         String Address = request.getParameter("address");
         String Service = (String)session.getAttribute("Service");
         String Payment_method = request.getParameter("payment_opt");
@@ -91,11 +93,24 @@ public class ServiceFormHandler extends HttpServlet {
      //   System.out.println(Full_name+Email+Contact+Address+Service+Payment_method+Insurance+Ownership+Description);
         ServiceForm srcvfrm = new ServiceForm(Contact,Address,Service,0,Payment_method,Insurance,Ownership,Description, Service_status);
         String code = srcvfrm.add_srvc(srcvfrm);
-        System.out.println("Current Service Code: "+code);
-        session.setAttribute("service_code", code);
-        
-          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/ServiceForm.jsp");
-          dispatcher.forward(request, response);
+
+        if(code != null){
+             System.out.println("Current Service Code: "+code);
+             session.setAttribute("service_code", code);
+             dispatcher.forward(request, response);
+        }
+        else{
+              session.setAttribute("form_error", "Submission_Error");
+              dispatcher.forward(request, response);
+        }
+       
+        }
+        catch(ServletException | IOException | NumberFormatException e){
+            System.out.println("Exception: "+e);
+            session.setAttribute("form_error", "Submission_Error");
+            dispatcher.forward(request, response);
+        }
+       
    //  processRequest(request, response);
        
     }

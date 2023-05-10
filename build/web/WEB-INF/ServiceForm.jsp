@@ -39,6 +39,13 @@
     <div class="heading">
 		Services Form
 	</div>
+         <div id="err" class="err"> <%
+              String errorMessage = (String )session.getAttribute("form_error");
+              if(errorMessage != null){
+              %> <p id="err_text">  <%out.println("Error submitting the feedback please try again in a few moments. You might not be able to submit the request currently.");%></p> <%
+            }
+             
+            %></div>
   
     <div class="subheading">
     <%
@@ -118,14 +125,24 @@
             <label class="desc" for="description">Description</label>
             <textarea name="description" id="description" cols="30" rows="10" name="description" required></textarea>
         </div>
-        
-            <button type="submit" class="submit_btn">Submit</button>
+        <%
+        if(errorMessage == null){
+        %>
+          <button type="submit" class="submit_btn">Submit</button> 
+          <%
+            }
+        %>
+          
     </form>
             
              <script src="popup.js"></script>
          <script>
-             <%String code = (String)session.getAttribute("service_code");%>
+             <%String code = (String)session.getAttribute("service_code");
+           
+             %>
              let code = '<%=code%>';
+             let error = '<%=errorMessage%>';
+             console.log(error);
 //             document.write(code);
              if(code === null || code ==="" || code ==="null"){
                
