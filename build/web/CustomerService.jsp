@@ -19,6 +19,16 @@
 	<link rel="icon" href="./resources/headphones.png">
 </head>
 <body>
+    <div class="popup_service_code" id="popup_service_code">
+        <h2>Service Request Recieved</h2>
+        <img src="./resources/check.png" alt="" class="check">
+        <div class="srvc_info">
+            <p id="FBpopup">Feedback submitted successfully. We truly appreciate your feedback, we'll use it to improve our systems and services.</p>
+      
+        </div>
+        <button class="ok_btn" id="ok_btn">Ok</button>
+    </div>
+        
     <div class="back">
         <a href="/Services/Services.jsp"></a>
     </div>
@@ -33,6 +43,17 @@
     </h3>
     
     <form class="otherserviceform" action="CustomerServiceHandler" method="post">
+                <div id="err" class="err"> <%
+              String errorMessage = (String) session.getAttribute("FB_error");
+              if(errorMessage != null){
+               out.println("Error submitting the feedback. This might be because of frequent feedback submission. Please wait before submitting another feedback.");
+            }
+             
+            %>
+                 <br>
+                 <br>
+                </div>
+           
 <div class="innerformcontainer">
 	<div class="formitem">
 		<label for="Full_name">Full Name</label>
@@ -59,7 +80,22 @@
 	<label class="desc" for="Feedback">Feedback</label>
 	<textarea name="Feedback" id="Feedback"  cols="30" rows="10"></textarea> 
 </div>
+
         <button type="submit" class="submit_btn">Submit</button>
     </form>
+      <script src="popup.js"></script>
+<script>
+    let status = '<%= session.getAttribute("FB") %>';
+    console.log("Status Var = " + status);
+        if(status === null || status ==="" || status ==="null"){
+               
+             }
+             else{
+                   start();
+             }
+</script>
+
+  
+  
 </body>
 </html>

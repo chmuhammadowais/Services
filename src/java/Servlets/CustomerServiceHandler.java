@@ -5,10 +5,12 @@
 package Servlets;
 
 import DB.DatabaseCon;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -77,6 +79,8 @@ public class CustomerServiceHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         HttpSession session = request.getSession();
+          RequestDispatcher rd = request.getRequestDispatcher("CustomerService.jsp");
         String Full_name = request.getParameter("Full_name");
         String Email = request.getParameter("Email");
         Integer Contact = Integer.valueOf(request.getParameter("Contact"));
@@ -95,11 +99,16 @@ public class CustomerServiceHandler extends HttpServlet {
               String current_date = String.valueOf(currentDate);
               ps.setString(6, current_date);
               ps.executeUpdate();
-              System.out.println("Feedback Submitted"); 
-              processRequest(request, response);
+              System.out.println("Feedback Submitted");           
+              session.setAttribute("FB", "Feedback_Submitted_Successfully");
+             
+              rd.forward(request, response);
+//              processRequest(request, response);
         }
         catch(SQLException e){
             System.out.println("Exception : "+e);
+            session.setAttribute("FB_error", "FB_Submission_Error");
+             rd.forward(request, response);
         }  
     }
 

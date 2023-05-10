@@ -535,7 +535,7 @@ tr:nth-child(even){
 }
 .popup_service_code{
     width: 500px;
-    height: 250px;
+    height: 280px;
     background-color: lightgrey;
     border-radius: 10px;
     border: 2px solid black;
@@ -617,6 +617,9 @@ tr:nth-child(even){
     border: transparent;
     font-size: 17px;
     font-weight: bold;
+}
+#FBpopup{
+    text-align: center;
 }
 @media only screen and (max-width:768px){
     .menu_bar{

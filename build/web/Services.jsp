@@ -25,6 +25,8 @@
     <%session.removeAttribute("status");%>
     <%session.removeAttribute("errorMessage");%>
     <%session.removeAttribute("SQLError");%>
+    <%session.removeAttribute("FB");%>
+    <%session.removeAttribute("FB_error");%>    
        <div class="menu_bar">
         <div class="icon"></div>
 
