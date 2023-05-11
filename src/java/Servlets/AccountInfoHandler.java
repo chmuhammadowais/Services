@@ -5,6 +5,7 @@
 package Servlets;
 
 import Management.Client;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -72,25 +73,41 @@ public class AccountInfoHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-           Integer curr_cont = (Integer) session.getAttribute("Contact");
-     String name = request.getParameter("name");
-		int age = Integer.parseInt(request.getParameter("age"));
-		String gender = request.getParameter("gender");
-		int contact = Integer.parseInt(request.getParameter("contact"));
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String address = request.getParameter("address");
-		String contact_hrs_from = request.getParameter("time1");
-		String contact_hrs_till = request.getParameter("time2");
-		//add_client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
-                System.out.println(name+age+contact_hrs_from+contact_hrs_till);
-                Client c = new Client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
+        try{
+              HttpSession session = request.getSession();
+          Integer curr_cont = (Integer) session.getAttribute("Contact");
+          String name = request.getParameter("name");
+          int age = Integer.parseInt(request.getParameter("age"));
+          String gender = request.getParameter("gender");
+          int contact = Integer.parseInt(request.getParameter("contact"));
+          String email = request.getParameter("email");
+          String password = request.getParameter("password");
+          String address = request.getParameter("address");
+          String contact_hrs_from = request.getParameter("time1");
+          String contact_hrs_till = request.getParameter("time2");
+          
+          System.out.println(name+age+contact_hrs_from+contact_hrs_till);
+          Client c = new Client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
+          RequestDispatcher rs = request.getRequestDispatcher("AccountInfo.jsp");
+          boolean flag = c.update_info(c,curr_cont);
+
+          if(flag){
+              session.setAttribute("update_status", "success");
+              session.removeAttribute("Contact");
+               rs.forward(request, response);
+          }
+          else{
+                session.setAttribute("update_err", "unsuccess");
+               rs.forward(request, response);
+          }
+        }
+        catch(ServletException | IOException | NumberFormatException e){
+            System.out.println("Exception: "+e);
+        }
+        
          
-                c.update_info(c,curr_cont);
-               
-                    session.invalidate();
-            response.sendRedirect("/Services/");
+//                    session.invalidate();
+//            response.sendRedirect("/Services/");
             
 //        processRequest(request, response);
     }

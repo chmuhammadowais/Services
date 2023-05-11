@@ -28,6 +28,15 @@
     <%session.removeAttribute("FB");%>
     <%session.removeAttribute("FB_error");%>    
     <%session.removeAttribute("form_error");%>    
+    <%session.removeAttribute("update_err");%>  
+     <%session.removeAttribute("update_status");%>  
+     
+     <%
+        Integer cont = (Integer) session.getAttribute("Contact");
+        if(cont == null){
+            response.sendRedirect("/Services/SigninSignup.jsp");
+         }
+     %>
        <div class="menu_bar">
         <div class="icon"></div>
 

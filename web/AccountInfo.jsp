@@ -28,6 +28,23 @@
 
     <div class="accountavatar"></div>
 
+    <div class="popup_service_code" id="popup_service_code">
+        <h2>Success</h2>
+        <img src="./resources/check.png" alt="" class="check">
+        <div class="srvc_info">
+            <p id="FBpopup">Account Information Updated Successfully</p>
+        </div>
+        <button class="ok_btn" id="ok_btn">Ok</button>
+    </div>
+    
+        <div id="err" class="err"> <%
+              String errorMessage = (String) session.getAttribute("update_err");
+              if(errorMessage != null){
+              %> <p id="err_text">  <%out.println("Error updating the information. Please try again in a few moments. We apoligize for the inconvinience.");%></p> <%
+            }
+             
+            %></div>
+    
     <form action="AccountInfoHandler"  method="post" class="form_container">
         <div class="innerformcontainer">
             <div class="formitem">
@@ -106,5 +123,28 @@
         </div>
          <button type="submit" class="submit_btn">Update</button>
     </form>
+            <%
+            String update_status = (String) session.getAttribute("update_status");
+            if(update_status != null){
+             out.println(update_status);
+                }
+            %>
+              <script src="popup.js"></script>
+            <script>
+                let update_status = '<%=update_status%>';
+                console.log(update_status);
+                  if(update_status === null || update_status ==="" || update_status ==="null"){
+               
+             }
+             else{
+                  
+                   start();
+                   <%
+                   if(update_status != null){
+                   session.invalidate();
+                       }
+                   %>
+             }
+            </script>
 </body>
 </html>
