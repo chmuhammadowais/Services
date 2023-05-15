@@ -11,8 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 
 /**
  *
@@ -33,19 +31,6 @@ public class FormRedirector extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.sendRedirect("/Services");
-//        try (PrintWriter out = response.getWriter()) {
-//                  response.sendRedirect("/Services");
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet FormRedirector</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet FormRedirector at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,18 +44,18 @@ public class FormRedirector extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-     
+            throws ServletException, IOException {   
         HttpSession session = request.getSession();
         String Full_name =  (String)session.getAttribute("Full_name");
         Integer Contact = (Integer)session.getAttribute("Contact");
         String Email = (String)session.getAttribute("Email");
         String Address = (String)session.getAttribute("Address");
         if(Full_name != null && Contact != null  && Email != null && Address != null){
-                 response.getWriter().append("Served at: ").append(request.getContextPath());
+                String btn = request.getParameter("btn");
+                session.setAttribute("srvc_type", btn);
+                
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/ServiceForm.jsp");
                 dispatcher.forward(request, response);
-          //      processRequest(request, response);
         }
         else{
         response.sendRedirect("/Services/SigninSignup.jsp");

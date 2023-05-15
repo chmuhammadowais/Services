@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -37,20 +36,6 @@ public class CustomerServiceHandler extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
          response.sendRedirect("/Services");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//                  response.sendRedirect("/Services");
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet CustomerServiceHandler</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet CustomerServiceHandler at " + request.getContextPath() + "</h1>");
-//            out.println("<h1>Feedback Submitted " + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -100,10 +85,8 @@ public class CustomerServiceHandler extends HttpServlet {
               ps.setString(6, current_date);
               ps.executeUpdate();
               System.out.println("Feedback Submitted");           
-              session.setAttribute("FB", "Feedback_Submitted_Successfully");
-             
+              session.setAttribute("FB", "Feedback_Submitted_Successfully");           
               rd.forward(request, response);
-//              processRequest(request, response);
         }
         catch(SQLException e){
             System.out.println("Exception : "+e);

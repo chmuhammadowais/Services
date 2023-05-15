@@ -40,18 +40,20 @@
 		Services Form
 	</div>
          <div id="err" class="err"> <%
-              String errorMessage = (String )session.getAttribute("form_error");
+              String errorMessage = (String)session.getAttribute("form_error");
               if(errorMessage != null){
               %> <p id="err_text">  <%out.println("Error submitting the feedback please try again in a few moments. You might not be able to submit the request currently.");%></p> <%
-            }
-             
-            %></div>
+            }       
+            %>
+         </div>
   
-    <div class="subheading">
+         <div class="subheading" id="subheading">
     <%
-    String type = request.getParameter("btn");
+     String type = (String) session.getAttribute("srvc_type");
      if(type != null){
-     session.setAttribute("Service",type);
+     %>
+     <script> let type = '<%=type%>';</script>
+     <%
     	 out.print(type);
      }
      else{
@@ -60,7 +62,7 @@
      %>
     </div>
 
-    <form action="ServiceFormHandler" method="post" class="form_container">
+    <form action="ServiceFormHandler" method="post" id="form" class="form_container">
         <div class="innerformcontainer">
             <div class="formitem">
                 <label for="name">Full Name</label>
@@ -135,15 +137,13 @@
           
     </form>
             
-             <script src="popup.js"></script>
+             <script src="/Services/JavaScript/popup.js"></script>
          <script>
              <%String code = (String)session.getAttribute("service_code");
            
              %>
              let code = '<%=code%>';
              let error = '<%=errorMessage%>';
-             console.log(error);
-//             document.write(code);
              if(code === null || code ==="" || code ==="null"){
                
              }
@@ -151,6 +151,6 @@
                    start();
              }
          </script>
-    
+         <script  src="/Services/JavaScript/form_submit.js"></script>
 </body>
 </html>

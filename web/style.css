@@ -532,6 +532,7 @@ tr:nth-child(even){
 }
 .err{
     color: red;
+    text-align: center;
 }
 .popup_service_code{
     width: 500px;

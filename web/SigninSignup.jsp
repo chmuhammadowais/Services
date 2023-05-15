@@ -16,7 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="style.css" type="text/css">
 	<link rel="icon" href="./resources/lock-icon-11.png">
-                  <script defer src="script.js"></script>
+                  <script defer src="/Services/JavaScript/script.js"></script>
 </head>
 <body>
 

@@ -31,20 +31,8 @@ public class AccountInfoHandler extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+         response.setContentType("text/html;charset=UTF-8");
          response.sendRedirect("/Services");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet AccountInfoHandler</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet AccountInfoHandler at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,17 +62,17 @@ public class AccountInfoHandler extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-              HttpSession session = request.getSession();
-          Integer curr_cont = (Integer) session.getAttribute("Contact");
-          String name = request.getParameter("name");
-          int age = Integer.parseInt(request.getParameter("age"));
-          String gender = request.getParameter("gender");
-          int contact = Integer.parseInt(request.getParameter("contact"));
-          String email = request.getParameter("email");
-          String password = request.getParameter("password");
-          String address = request.getParameter("address");
-          String contact_hrs_from = request.getParameter("time1");
-          String contact_hrs_till = request.getParameter("time2");
+            HttpSession session = request.getSession();
+            Integer curr_cont = (Integer) session.getAttribute("Contact");
+            String name = request.getParameter("name");
+            int age = Integer.parseInt(request.getParameter("age"));
+            String gender = request.getParameter("gender");
+            int contact = Integer.parseInt(request.getParameter("contact"));
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String address = request.getParameter("address");
+            String contact_hrs_from = request.getParameter("time1");
+            String contact_hrs_till = request.getParameter("time2");
           
           System.out.println(name+age+contact_hrs_from+contact_hrs_till);
           Client c = new Client(name,age,gender,contact,email,password,address,contact_hrs_from,contact_hrs_till);
@@ -105,11 +93,6 @@ public class AccountInfoHandler extends HttpServlet {
             System.out.println("Exception: "+e);
         }
         
-         
-//                    session.invalidate();
-//            response.sendRedirect("/Services/");
-            
-//        processRequest(request, response);
     }
 
     /**

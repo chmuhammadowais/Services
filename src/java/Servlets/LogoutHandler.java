@@ -31,32 +31,21 @@ public class LogoutHandler extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet LogoutHandler</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet LogoutHandler at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
+        HttpSession session = request.getSession();       
+          if(session != null){
+                    String Full_name  = (String)  session.getAttribute("Full_name");
+                    Integer Age  = (Integer)   session.getAttribute("Age");
+                    String Gender  = (String)  session.getAttribute("Gender");
+                    Integer Contact  = (Integer)  session.getAttribute("Contact");
+                    String Email  = (String)  session.getAttribute("Email");
+                    String Address  = (String)  session.getAttribute("Address");
+                    String Contact_hrs_from  = (String)   session.getAttribute("Contact_hrs_from");
+                    String Contact_hrs_till = (String)    session.getAttribute("Contact_hrs_till");
 
-HttpSession session = request.getSession();       
-  if(session != null){
-            String Full_name  = (String)  session.getAttribute("Full_name");
-            Integer Age  = (Integer)   session.getAttribute("Age");
-            String Gender  = (String)  session.getAttribute("Gender");
-            Integer Contact  = (Integer)  session.getAttribute("Contact");
-            String Email  = (String)  session.getAttribute("Email");
-            String Address  = (String)  session.getAttribute("Address");
-            String Contact_hrs_from  = (String)   session.getAttribute("Contact_hrs_from");
-            String Contact_hrs_till = (String)    session.getAttribute("Contact_hrs_till");
-            
-            System.out.println(Full_name+" "+Age+" "+Gender+" "+Contact+" "+Email+" "+Address+" "+Contact_hrs_from+" "+Contact_hrs_till);
-        session.invalidate();
-        response.sendRedirect("/Services/");
-  }
+                    System.out.println(Full_name+" "+Age+" "+Gender+" "+Contact+" "+Email+" "+Address+" "+Contact_hrs_from+" "+Contact_hrs_till);
+                session.invalidate();
+                response.sendRedirect("/Services/");
+          }
   else{
 
     out.println("<html>");

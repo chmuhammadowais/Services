@@ -65,9 +65,8 @@
     console.log("Status Var = " + status);
 </script>
 
-    </script>
     
-     <script src="service_status.js"></script>
+     <script src="/Services/JavaScript/service_status.js"></script>
      <script>
      if(status === null || status ==="" || status ==="null"){
               

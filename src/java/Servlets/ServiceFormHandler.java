@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
 /**
@@ -34,19 +33,6 @@ public class ServiceFormHandler extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.sendRedirect("/Services");
-//        try (PrintWriter out = response.getWriter()) {
-//                       response.sendRedirect("/Services");
-//            /* TODO output your page here. You may use following sample code. */
-//             out.println("<!DOCTYPE html>");
-//             out.println("<html>");
-//             out.println("<head>");
-//             out.println("<title>Servlet ServiceFormHandler</title>");    
-//             out.println("</head>");
-//             out.println("<body>");
-//             out.println("<h1>Servlet ServiceFormHandler at " + request.getContextPath() + "</h1>");        
-//             out.println("</body>");
-//             out.println("</html>");
-//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,10 +47,7 @@ public class ServiceFormHandler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-             HttpSession session = request.getSession();
-             
-             session.setAttribute("service_code", null);
-            //processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -83,14 +66,13 @@ public class ServiceFormHandler extends HttpServlet {
         try{
              int Contact = Integer.parseInt( request.getParameter("contact"));
         String Address = request.getParameter("address");
-        String Service = (String)session.getAttribute("Service");
+        String Service = (String) session.getAttribute("srvc_type");
         String Payment_method = request.getParameter("payment_opt");
         String Insurance = request.getParameter("insurance");
         String Ownership = request.getParameter("ownership");
         String Description = request.getParameter("description");
         String Service_status = "Initialize";
         
-     //   System.out.println(Full_name+Email+Contact+Address+Service+Payment_method+Insurance+Ownership+Description);
         ServiceForm srcvfrm = new ServiceForm(Contact,Address,Service,0,Payment_method,Insurance,Ownership,Description, Service_status);
         String code = srcvfrm.add_srvc(srcvfrm);
 
@@ -110,9 +92,6 @@ public class ServiceFormHandler extends HttpServlet {
             session.setAttribute("form_error", "Submission_Error");
             dispatcher.forward(request, response);
         }
-       
-   //  processRequest(request, response);
-       
     }
 
     /**

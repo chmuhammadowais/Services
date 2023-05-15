@@ -83,7 +83,7 @@
 
         <button type="submit" class="submit_btn">Submit</button>
     </form>
-      <script src="popup.js"></script>
+      <script src="/Services/JavaScript/popup.js"></script>
 <script>
     let status = '<%= session.getAttribute("FB") %>';
     console.log("Status Var = " + status);

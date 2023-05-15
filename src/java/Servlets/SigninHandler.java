@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
@@ -33,18 +32,6 @@ public class SigninHandler extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.sendRedirect("/Services");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet SigninHandler</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet SigninHandler at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -97,19 +84,13 @@ public class SigninHandler extends HttpServlet {
                session.setAttribute("Contact_hrs_till", client_info.get(7));
                
                session.removeAttribute("errorMessage");
-//               PrintWriter writer = response.getWriter();
-//               writer.println("Session ID: " + session.getId());
-//               writer.println("Creation Time: " + new Date(session.getCreationTime()));
-//               writer. println("Last Accessed Time: " + new Date(session.getLastAccessedTime()));
-//               writer.println(session.getAttribute("Full_name"));
-         //     processRequest(request, response);
-         response.sendRedirect("/Services/Services.jsp");
-        }
-        else{
-            HttpSession session = request.getSession();
-           session.setAttribute("errorMessage", "Email or Password Invalid");
-           response.sendRedirect("/Services/SigninSignup.jsp");
-        
+               response.sendRedirect("/Services/Services.jsp");
+               }
+               else{
+                   HttpSession session = request.getSession();
+                  session.setAttribute("errorMessage", "Email or Password Invalid");
+                  response.sendRedirect("/Services/SigninSignup.jsp");
+
         }
       
     }

@@ -129,7 +129,7 @@
              out.println(update_status);
                 }
             %>
-              <script src="popup.js"></script>
+              <script src="/Services/JavaScript/popup.js"></script>
             <script>
                 let update_status = '<%=update_status%>';
                 console.log(update_status);
