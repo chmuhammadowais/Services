@@ -11,6 +11,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 /**
@@ -60,40 +63,61 @@ public class SigninHandler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        boolean flag = Client.verify_client(email, password);
-        if(flag){
-              ArrayList client_info = Client.retrieve_info(email,password);
-              System.out.println("======================");
-              System.out.println("*** User logged in ***");
-              System.out.println("======================");
-            for (Object data : client_info) {
-                System.out.println(data);
-            }
-            System.out.println("==============");
+        try {
+            JSONParser parser = new JSONParser();
+            JSONObject jsonData = (JSONObject) parser.parse(request.getReader());
+            System.out.println(jsonData);
             
-               HttpSession session = request.getSession();
-               session.setAttribute("Full_name", client_info.get(0));
-               session.setAttribute("Age", client_info.get(1));
-               session.setAttribute("Gender", client_info.get(2));
-               session.setAttribute("Contact", client_info.get(3));
-               session.setAttribute("Email", client_info.get(4));
-               session.setAttribute("Address", client_info.get(5));
-               session.setAttribute("Contact_hrs_from", client_info.get(6));
-               session.setAttribute("Contact_hrs_till", client_info.get(7));
-               
-               session.removeAttribute("errorMessage");
-               response.sendRedirect("/Services/Services.jsp");
-               }
-               else{
-                   HttpSession session = request.getSession();
-                  session.setAttribute("errorMessage", "Email or Password Invalid");
-                  response.sendRedirect("/Services/SigninSignup.jsp");
+            String email = (String) jsonData.get("em");
+            String password = (String) jsonData.get("pw");
+            System.out.println(email + " " + password);
 
+            boolean flag = Client.verify_client(email, password);
+            if (flag) {
+                ArrayList<Object> client_info = Client.retrieve_info(email, password);
+                System.out.println("======================");
+                System.out.println("*** User logged in ***");
+                System.out.println("======================");
+                for (Object data : client_info) {
+                    System.out.println(data);
+                }
+                System.out.println("==============");
+
+                HttpSession session = request.getSession();
+                session.setAttribute("Full_name", client_info.get(0));
+                session.setAttribute("Age", client_info.get(1));
+                session.setAttribute("Gender", client_info.get(2));
+                session.setAttribute("Contact", client_info.get(3));
+                session.setAttribute("Email", client_info.get(4));
+                session.setAttribute("Address", client_info.get(5));
+                session.setAttribute("Contact_hrs_from", client_info.get(6));
+                session.setAttribute("Contact_hrs_till", client_info.get(7));
+
+                session.removeAttribute("errorMessage");
+                
+                JSONObject jsonResponse = new JSONObject();
+                jsonResponse.put("redirectUrl", "/Services/Services.jsp");
+                
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(jsonResponse.toJSONString());
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("errorMessage", "Email or Password Invalid");
+
+                JSONObject jsonResponse = new JSONObject();
+                jsonResponse.put("redirectUrl", "/Services/SigninSignup.jsp");
+                
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(jsonResponse.toJSONString());
+            }
+        } catch (IOException | ParseException e) {
+            System.out.println("Exception: " + e);
         }
-      
     }
+
+
 
     /**
      * Returns a short description of the servlet.
