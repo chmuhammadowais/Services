@@ -26,7 +26,7 @@
 
     <div class="accountavatar"></div>
 
-    <form id="form" action="SigninHandler" method="post" class="otherserviceform">
+    <form id="form" class="otherserviceform">
         <input type="email" id="email" class="input_field" placeholder="Email" name="email">
         <input type="password" id="password" class="input_field" placeholder="Password" name="password">
         <div id="err" class="err">
@@ -40,7 +40,7 @@
         <button type="submit" id="submitBtn" class="submit_btn">Submit</button>
     </form>
 
-    <form class="otherlogin">
+        <form class="otherlogin" action="SignupRequestHandler" method="post">
         <button type="submit" value="Email" name="btn" class="email">Sign up with Email</button>
         <button type="submit" value="Google" name="btn" class="google">Sign up with Google</button>
         <button type="submit" value="Facebook" name="btn" class="facebook">Sign up with Facebook</button>

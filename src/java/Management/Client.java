@@ -6,7 +6,6 @@ package Management;
 
 
 import DB.DatabaseCon;
-import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -225,12 +224,8 @@ public class Client {
         }
     }
     public boolean update_info(Client obj, int curr_cont){
-        
         try{
-             Connection con = DatabaseCon.connection();
-             Statement stmt1 = con.createStatement();
-             Statement stmt2 = con.createStatement();
-             stmt1.executeUpdate("SET FOREIGN_KEY_CHECKS=0;");
+             Connection con = DatabaseCon.connection();  
              PreparedStatement ps = con.prepareStatement("update Clients set Full_name=?, Age=?, Gender=?, Contact=?, Email=?, Password=?,Address=?, Contact_hrs_from=?, Contact_hrs_till=? where Contact = ?;");
              ps.setString(1, obj.Full_name);
              ps.setInt(2, obj.Age);
@@ -245,9 +240,7 @@ public class Client {
              
             int rows =  ps.executeUpdate();
              System.out.println(obj.Full_name +" " + obj.Age+" "+obj.Gender+" "+obj.Contact+" "+obj.Email+" "+obj.Password+" "+obj.Address+" "+obj.Contact_hrs_from+" "+obj.Contact_hrs_till+" "+curr_cont);
-             System.out.println("Information Updated Rows Affected " + rows);
-             stmt2.executeUpdate("SET FOREIGN_KEY_CHECKS=1;");
-             
+             System.out.println("Information Updated Rows Affected " + rows);   
              return true;
         }
         catch(SQLException e){
